@@ -7,12 +7,14 @@ import {
   Phone,
   Mail,
   MapPin,
+  CreditCard,
 } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
-import Link from "next/link";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const PAYMENT_URL =
+    "https://payu.in/pay/A03F3FA8038CE785284CB50CD60370D4";
 
   const externalLinks = [
     { name: "payzonindia.com", url: "https://www.payzonindia.com" },
@@ -21,24 +23,38 @@ export default function Footer() {
     { name: "payzonshoppy.com", url: "https://www.payzonshoppy.com" },
     { name: "payzonitservices.com", url: "https://www.payzonitservices.com" },
     { name: "sadaivsatya.com", url: "https://www.sadaivsatya.com" },
-    { name: "sadaivyuvafoundation.com", url: "https://www.sadaivyuvafoundation.com" },
+    {
+      name: "sadaivyuvafoundation.com",
+      url: "https://www.sadaivyuvafoundation.com",
+    },
   ];
 
   const navigationLinks = [
     { name: "Profile", url: "/about" },
     { name: "Our Team", url: "/our-team" },
     { name: "Portfolio", url: "/portfolio" },
-    { name: "Contact", url: "/contact" },
     { name: "Our Ventures", url: "/sector" },
-    { name: "Cyber Security", url: "sector/cyber-security/" },
     { name: "IT-Services", url: "sector/it-services/" },
+    { name: "Digital Marketing", url: "/sector/digital-marketing" },
+    { name: "Cyber Security", url: "sector/cyber-security/" },
   ];
 
   const partnerImages = [
-    { src: "/images/Sadaiv MEDIA 1.png", url: "https://www.sadaivsatya.com/", alt: "Sadaiv Media" },
-    { src: "/images/sadaivsatyalogo.jpeg", url: "https://www.sadaivsatya.com/", alt: "Sadaiv Satya" },
-    { src: "/images/inffablesparklogo (1).png", url: "https://payzonshoppy.com/", alt: "Inffable Spark" },
-    { src: "/images/SMART TAX !DEA.png", url: "https://www.smarttaxidea.com/", alt: "Smart Tax Idea" },
+    {
+      src: "/images/sadaivsatyalogo.jpeg",
+      url: "https://www.sadaivyuvafoundation.com/",
+      alt: "Sadaiv Satya",
+    },
+    {
+      src: "/images/Sadaiv MEDIA 1.png",
+      url: "https://www.sadaivsatya.com/",
+      alt: "Sadaiv Media",
+    },
+    {
+      src: "/images/SMART TAX !DEA.png",
+      url: "https://www.smarttaxidea.com/",
+      alt: "Smart Tax Idea",
+    },
   ];
 
   return (
@@ -56,7 +72,6 @@ export default function Footer() {
       <div className="relative z-10 px-6 sm:px-12 lg:px-24 py-20">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 max-w-7xl mx-auto">
-          
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex flex-col items-start">
@@ -66,13 +81,15 @@ export default function Footer() {
                 className="h-24 w-24 mb-6 drop-shadow-lg"
               />
               <h3 className="font-bold text-2xl mb-5 leading-tight">
-                PAYZON INDIA<br />PVT LTD
+                PAYZON INDIA
+                <br />
+                PVT LTD
               </h3>
               <p className="text-gray-300 text-base leading-relaxed mb-8">
                 We have extensive experience providing industry-specific IT
                 solutions. Our team understands the unique challenges.
               </p>
-              
+
               {/* Social Icons */}
               <div className="flex space-x-4">
                 <a
@@ -133,12 +150,12 @@ export default function Footer() {
             <ul className="space-y-4">
               {navigationLinks.map((link, i) => (
                 <li key={i}>
-                  <Link
+                  <a
                     href={link.url}
                     className="text-gray-300 hover:text-white hover:pl-2 transition-all duration-300 inline-block text-base"
                   >
                     → {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -177,13 +194,15 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
                 <div>
                   <p className="text-gray-300 leading-relaxed">
-                    Sector B Plot 1, Patel Nagar,<br />
-                    Raisen road, Bhopal (MP)<br />
+                    Sector B Plot 1, Patel Nagar,
+                    <br />
+                    Raisen road, Bhopal (MP)
+                    <br />
                     Pin: 462022
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-blue-500 flex-shrink-0" />
                 <a
@@ -193,7 +212,7 @@ export default function Footer() {
                   info@payzonindia.com
                 </a>
               </div>
-              
+
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-blue-500 flex-shrink-0" />
@@ -214,7 +233,7 @@ export default function Footer() {
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <FaWhatsapp className="w-5 h-5 text-green-500 flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-green-500 flex-shrink-0" />
                   <a
                     href="https://wa.me/919243837546"
                     target="_blank"
@@ -225,55 +244,95 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
+
+              {/* ── Pay Now Button ── */}
+              <a
+                href={PAYMENT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="md:hidden inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/30"
+                style={{
+                  background: "linear-gradient(135deg, #2563eb 0%, #0891b2 100%)",
+                }}
+              >
+                <CreditCard className="w-4 h-4" />
+            Payment
+              </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-16 pt-10 max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-gray-400 text-base text-center md:text-left">
-              © {currentYear} PAYZON INDIA PVT LTD. All Rights Reserved.
-            </p>
-            
-            {/* Partner Images */}
-            <div className="flex flex-wrap justify-center items-center gap-6">
-              {partnerImages.map((partner, i) => (
+          <div className="flex flex-col gap-8">
+            {/* Copyright and Policy Links Row */}
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 w-full">
+              <p className="text-gray-400 text-base text-center md:text-left">
+                © {currentYear} PAYZON INDIA PVT LTD. All Rights Reserved.
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-8">
                 <a
-                  key={i}
-                  href={partner.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-transform duration-300 hover:scale-110"
+                  href="/audit"
+                  className="text-gray-400 hover:text-white text-base transition-colors duration-300"
                 >
-                  <img
-                    src={partner.src}
-                    alt={partner.alt}
-                    className="h-12 w-auto object-contain filter brightness-90 hover:brightness-100 transition-all duration-300"
-                  />
+                  Audit Report
                 </a>
-              ))}
+                <a
+                  href="/contact"
+                  className="text-gray-400 hover:text-white text-base transition-colors duration-300"
+                >
+                  Contact Us
+                </a>
+                <a
+                  href="/Terms-Conditions"
+                  className="text-gray-400 hover:text-white text-base transition-colors duration-300"
+                >
+                  Terms & Conditions
+                </a>
+                <a
+                  href="/privacy-policy"
+                  className="text-gray-400 hover:text-white text-base transition-colors duration-300"
+                >
+                  Privacy Policy
+                </a>
+                <a
+                  href="/refund-policy"
+                  className="text-gray-400 hover:text-white text-base transition-colors duration-300"
+                >
+                  Refund & Cancellation
+                </a>
+              </div>
             </div>
-            
-            <div className="flex flex-wrap justify-center gap-8">
-              <Link
-                href="/privacy-policy"
-                className="text-gray-400 hover:text-white text-base transition-colors duration-300"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/refund-policy"
-                className="text-gray-400 hover:text-white text-base transition-colors duration-300"
-              >
-                Refund Policy
-              </Link>
-              <Link
-                href="/cancellation-policy"
-                className="text-gray-400 hover:text-white text-base transition-colors duration-300"
-              >
-                Cancellation Policy
-              </Link>
+
+            {/* Business Collaboration Section */}
+            <div className="w-full pt-8 border-t border-white/10">
+              <div className="text-center mb-8">
+                <h4 className="text-gray-200 font-bold text-xl md:text-2xl tracking-wider uppercase inline-block relative">
+                  Our Business Collaboration
+                  <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></span>
+                </h4>
+              </div>
+
+              <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+                {partnerImages.map((partner, i) => (
+                  <a
+                    key={i}
+                    href={partner.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative"
+                  >
+                    <div className="bg-white/5 backdrop-blur-sm rounded-lg p-5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-1">
+                      <img
+                        src={partner.src}
+                        alt={partner.alt}
+                        className="h-16 w-auto object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300"
+                      />
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

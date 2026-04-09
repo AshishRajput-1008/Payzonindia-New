@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Mic, Send, Volume2, Search, Copy, Trash2, Download } from "lucide-react";
+import { Mic, Send, Volume2, Search, Copy, Trash2, Download, Sparkles, Brain } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
 import Image from "next/image";
 
 interface FAQItem {
@@ -19,7 +18,8 @@ interface Message {
   text: string;
   sender: "user" | "bot";
   reaction?: string;
-  source?: "company-faq" | "ai" | "error";
+  source?: "company-faq" | "gemini-ai" | "gemini-with-search" | "error";
+  usedGoogleSearch?: boolean;
 }
 
 const faqData: FAQItem[] = [
@@ -68,92 +68,88 @@ const faqData: FAQItem[] = [
     keywords: ["fintech", "API", "recharge", "फिनटेक"],
     category: "Fintech",
   },
-  {
-    id: 6,
-    question: "Tell me about your cyber security services.",
-    questionHindi: "आपकी साइबर सिक्योरिटी सेवाओं के बारे में बताएं।",
-    answer: "We specialize in combating cyber fraud, providing data security, robust protection against digital crimes, and consultancy from expert advisors in the legal sector.",
-    answerHindi: "हम साइबर फ्रॉड से लड़ने, डेटा सिक्योरिटी प्रदान करने, डिजिटल क्राइम्स के खिलाफ मजबूत सुरक्षा, और लीगल सेक्टर में विशेषज्ञ सलाहकारों से कंसल्टेंसी में विशेषज्ञ हैं।",
-    keywords: ["cyber security", "protection", "साइबर सुरक्षा"],
-    category: "Cyber Security",
-  },
-  {
-    id: 7,
-    question: "What is Sadaiv Satya?",
-    questionHindi: "सदैव सत्य क्या है?",
-    answer: "Sadaiv Satya is our broadcasting startup providing real-time news coverage across India with insightful analysis and reliable reporting.",
-    answerHindi: "सदैव सत्य हमारा ब्रॉडकास्टिंग स्टार्टअप है जो भारत भर में रीयल-टाइम न्यूज कवरेज, इनसाइटफुल एनालिसिस और रिलायबल रिपोर्टिंग प्रदान करता है।",
-    keywords: ["Sadaiv Satya", "broadcasting", "news", "सदैव सत्य"],
-    category: "Broadcasting",
-  },
-  {
-    id: 8,
-    question: "What does Sadaiv Yuva Foundation do?",
-    questionHindi: "सदैव युवा फाउंडेशन क्या करता है?",
-    answer: "Sadaiv Yuva Foundation focuses on raising awareness about cyber threats, promoting digital safety, and providing education, resources, and training.",
-    answerHindi: "सदैव युवा फाउंडेशन साइबर थ्रेट्स के बारे में जागरूकता बढ़ाने, डिजिटल सेफ्टी को प्रमोट करने, और एजुकेशन, रिसोर्सेज, और ट्रेनिंग प्रदान करने पर फोकस करता है।",
-    keywords: ["Sadaiv Yuva", "foundation", "awareness", "सदैव युवा"],
-    category: "Cyber Awareness",
-  },
-  {
-    id: 9,
-    question: "Do you provide web development services?",
-    questionHindi: "क्या आप वेब डेवलपमेंट सेवाएं प्रदान करते हैं?",
-    answer: "Yes, we offer innovative web development, project management, support, and maintenance using cutting-edge technologies for scalable solutions.",
-    answerHindi: "हां, हम इनोवेटिव वेब डेवलपमेंट, प्रोजेक्ट मैनेजमेंट, सपोर्ट, और मेंटेनेंस प्रदान करते हैं जो स्केलेबल सॉल्यूशंस के लिए कटिंग-एज टेक्नोलॉजीज का उपयोग करते हैं।",
-    keywords: ["web development", "websites", "वेब डेवलपमेंट"],
-    category: "Web Development",
-  },
-  {
-    id: 10,
-    question: "What are your HR services?",
-    questionHindi: "आपकी एचआर सेवाएं क्या हैं?",
-    answer: "We provide employment services including payroll, benefits administration, HR management, and assistance for employers.",
-    answerHindi: "हम एम्प्लॉयमेंट सेवाएं प्रदान करते हैं जिसमें पेरोल, बेनिफिट्स एडमिनिस्ट्रेशन, एचआर मैनेजमेंट, और एम्प्लॉयर्स के लिए असिस्टेंस शामिल हैं।",
-    keywords: ["HR", "human resources", "employment", "एचआर"],
-    category: "HR Services",
-  },
 ];
 
 const PayzonIndiaFAQ: React.FC = () => {
+  // Backend API URL
+  const API_URL = "http://localhost:5000/api/chat";
+
   const messageIdCounter = useRef(1);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 0,
-      text: "Hello! I'm Grok, your AI assistant for Payzon India. Ask me anything about our services, location, contact, or offerings.",
+      text: "Hello! I'm Grok, your AI assistant for Payzon India. Ask me anything about our services, location, contact, or offerings. I have real-time Google Search enabled!",
       sender: "bot",
     },
   ]);
   const [input, setInput] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [suggestions, setSuggestions] = useState<FAQItem[]>([]);
   const [typingMessage, setTypingMessage] = useState<string | null>(null);
   const [language, setLanguage] = useState("en-US");
   const [speechSupported, setSpeechSupported] = useState(true);
   const [avatarState, setAvatarState] = useState<"idle" | "typing" | "speaking">("idle");
-  const [backendUrl] = useState("http://localhost:3000");
+  const [conversationHistory, setConversationHistory] = useState<any[]>([]);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingMessage, setLoadingMessage] = useState("");
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<any>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
 
+  // Loading messages to keep user engaged
+  const loadingMessages = [
+    "🔍 Searching Google for the latest information...",
+    "🧠 Analyzing data from multiple sources...",
+    "📊 Comparing market trends...",
+    "✨ Preparing a detailed response for you...",
+    "🌐 Gathering real-time insights...",
+    "💡 Processing your query...",
+  ];
+
+  // Simulate loading progress
+  useEffect(() => {
+    if (isLoading) {
+      setLoadingProgress(0);
+      let progress = 0;
+      let messageIndex = 0;
+      
+      const progressInterval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress > 95) progress = 95;
+        setLoadingProgress(progress);
+      }, 500);
+
+      const messageInterval = setInterval(() => {
+        messageIndex = (messageIndex + 1) % loadingMessages.length;
+        setLoadingMessage(loadingMessages[messageIndex]);
+      }, 2000);
+
+      return () => {
+        clearInterval(progressInterval);
+        clearInterval(messageInterval);
+        setLoadingProgress(100);
+      };
+    }
+  }, [isLoading]);
+
+  // Load chat history
   useEffect(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("faqChatHistory");
       if (saved) {
         const parsedMessages = JSON.parse(saved);
         setMessages(parsedMessages);
-        const maxId = Math.max(
-          ...parsedMessages.map((msg: Message) => msg.id),
-          1
-        );
+        const maxId = Math.max(...parsedMessages.map((msg: Message) => msg.id), 1);
         messageIdCounter.current = maxId + 1;
       }
     }
   }, []);
 
+  // Save chat history and auto-scroll
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("faqChatHistory", JSON.stringify(messages));
@@ -161,27 +157,22 @@ const PayzonIndiaFAQ: React.FC = () => {
     }
   }, [messages]);
 
+  // Setup speech recognition
   useEffect(() => {
     if (typeof window !== "undefined") {
       synthRef.current = window.speechSynthesis;
-      if (
-        "SpeechRecognition" in window ||
-        "webkitSpeechRecognition" in window
-      ) {
+      if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
         const SpeechRecognition =
-          (window as any).SpeechRecognition ||
-          (window as any).webkitSpeechRecognition;
+          (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
         recognitionRef.current = new SpeechRecognition();
         recognitionRef.current.continuous = false;
         recognitionRef.current.lang = language;
         recognitionRef.current.interimResults = false;
-
         recognitionRef.current.onresult = (event: any) => {
           const transcript = event.results[0][0].transcript;
           setInput(transcript);
           handleSubmit(transcript);
         };
-
         recognitionRef.current.onend = () => setIsListening(false);
       } else {
         setSpeechSupported(false);
@@ -189,6 +180,7 @@ const PayzonIndiaFAQ: React.FC = () => {
     }
   }, [language]);
 
+  // Update suggestions
   useEffect(() => {
     if (input.trim()) {
       const filtered = faqData
@@ -196,9 +188,7 @@ const PayzonIndiaFAQ: React.FC = () => {
           (faq) =>
             faq.question.toLowerCase().includes(input.toLowerCase()) ||
             faq.questionHindi.toLowerCase().includes(input.toLowerCase()) ||
-            faq.keywords.some((kw) =>
-              kw.toLowerCase().includes(input.toLowerCase())
-            )
+            faq.keywords.some((kw) => kw.toLowerCase().includes(input.toLowerCase()))
         )
         .slice(0, 4);
       setSuggestions(filtered);
@@ -207,81 +197,59 @@ const PayzonIndiaFAQ: React.FC = () => {
     }
   }, [input]);
 
-  // const handleSubmit = async (query: string = input) => {
-  //   if (!query.trim()) return;
+  // Enhanced formatting function
+  const formatMessage = (text: string) => {
+    // Remove excessive markdown formatting
+    let cleanedText = text
+      .replace(/#{1,6}\s+/g, '') // Remove # headers
+      .replace(/\*\*\*(.+?)\*\*\*/g, '<strong>$1</strong>') // Bold+italic
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // Bold
+      .replace(/\*(.+?)\*/g, '<em>$1</em>') // Italic
+      .replace(/`(.+?)`/g, '<code>$1</code>'); // Code
 
-  //   const newUserMessage: Message = {
-  //     id: messageIdCounter.current++,
-  //     text: query,
-  //     sender: "user",
-  //   };
-
-  //   setMessages((prev) => [...prev, newUserMessage]);
-  //   setInput("");
-  //   setAvatarState("typing");
-
-  //   try {
-  //     // const response = await fetch(`${backendUrl}/chat`, {
-  //     //   method: "POST",
-  //     //   headers: { "Content-Type": "application/json" },
-  //     //   body: JSON.stringify({ message: query }),
-  //     // });
-  //     const response = await fetch(`/chat`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ message: query }),
-  //     });
-
-  //     if (!response.ok) throw new Error("Backend error");
+    return cleanedText.split('\n').map((line, i) => {
+      const trimmedLine = line.trim();
       
-  //     const data = await response.json();
-  //     const botResponseText = data.answer;
-  //     const source = data.source || "ai";
-
-  //     setTypingMessage("");
-  //     let currentText = "";
-  //     let index = 0;
-  //     const typingInterval = setInterval(() => {
-  //       if (index < botResponseText.length) {
-  //         currentText += botResponseText[index];
-  //         setTypingMessage(currentText);
-  //         index++;
-  //       } else {
-  //         clearInterval(typingInterval);
-  //         setMessages((prev) => [
-  //           ...prev,
-  //           {
-  //             id: messageIdCounter.current++,
-  //             text: botResponseText,
-  //             sender: "bot",
-  //             source: source as any,
-  //           },
-  //         ]);
-  //         setTypingMessage(null);
-  //         setAvatarState("idle");
-  //         toggleSpeaking(botResponseText);
-  //       }
-  //     }, 30);
-  //   } catch (error) {
-  //     const errorMsg = language === "en-US"
-  //       ? "Sorry, I'm having trouble connecting. Please ensure the backend server is running on port 5000."
-  //       : "क्षमा करें, कनेक्ट करने में समस्या है। कृपया सुनिश्चित करें कि बैकएंड सर्वर चल रहा है।";
+      // Empty line
+      if (!trimmedLine) return <div key={i} className="h-2" />;
       
-  //     setMessages((prev) => [
-  //       ...prev,
-  //       {
-  //         id: messageIdCounter.current++,
-  //         text: errorMsg,
-  //         sender: "bot",
-  //         source: "error",
-  //       },
-  //     ]);
-  //     setAvatarState("idle");
-  //   }
-  // };
+      // Bullet points
+      if (trimmedLine.startsWith('•') || trimmedLine.startsWith('-') || trimmedLine.startsWith('*')) {
+        return (
+          <div key={i} className="flex gap-2 my-1">
+            <span className="text-primary font-bold">•</span>
+            <span dangerouslySetInnerHTML={{ __html: trimmedLine.substring(1).trim() }} />
+          </div>
+        );
+      }
+      
+      // Numbered lists
+      if (/^\d+\./.test(trimmedLine)) {
+        return (
+          <div key={i} className="flex gap-2 my-1">
+            <span className="text-primary font-bold">{trimmedLine.match(/^\d+\./)?.[0]}</span>
+            <span dangerouslySetInnerHTML={{ __html: trimmedLine.replace(/^\d+\.\s*/, '') }} />
+          </div>
+        );
+      }
+      
+      // Bold lines (important points)
+      if (trimmedLine.includes('<strong>')) {
+        return (
+          <div key={i} className="my-2" dangerouslySetInnerHTML={{ __html: trimmedLine }} />
+        );
+      }
+      
+      // Regular lines
+      return (
+        <div key={i} className="my-1" dangerouslySetInnerHTML={{ __html: trimmedLine }} />
+      );
+    });
+  };
 
+  // Main submit handler
   const handleSubmit = async (query: string = input) => {
-    if (!query.trim()) return;
+    if (!query.trim() || isLoading) return;
 
     const newUserMessage: Message = {
       id: messageIdCounter.current++,
@@ -291,27 +259,43 @@ const PayzonIndiaFAQ: React.FC = () => {
     setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
     setAvatarState("typing");
-    setTypingMessage("");
+    setIsLoading(true);
+    setLoadingMessage(loadingMessages[0]);
+
+    const newHistory = [...conversationHistory, { role: "user", content: query }];
 
     try {
-      // THIS IS THE ONLY LINE THAT MATTERS — CALLS SAME ORIGIN
-      const response = await fetch("/chat", {
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: query }),
+        body: JSON.stringify({ 
+          message: query,
+          conversationHistory: newHistory.slice(-10)
+        }),
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`HTTP ${response.status}: ${errorText}`);
+        throw new Error(`HTTP ${response.status}`);
       }
 
       const data = await response.json();
-      const botResponseText = data.answer;
-      const source = data.source || "ai";
+      
+      if (!data.success) {
+        throw new Error(data.answer || "Failed to get response");
+      }
 
+      const botResponseText = data.answer;
+      const source = data.source || "gemini-ai";
+      const usedSearch = data.usedGoogleSearch || false;
+
+      setIsLoading(false);
+      setTypingMessage("");
+
+      // Faster typing animation (5ms per character)
       let currentText = "";
       let index = 0;
+      const typingSpeed = 5; // Much faster!
+
       const typingInterval = setInterval(() => {
         if (index < botResponseText.length) {
           currentText += botResponseText[index];
@@ -319,26 +303,33 @@ const PayzonIndiaFAQ: React.FC = () => {
           index++;
         } else {
           clearInterval(typingInterval);
-          setMessages((prev) => [
-            ...prev,
-            {
-              id: messageIdCounter.current++,
-              text: botResponseText,
-              sender: "bot",
-              source: source as any,
-            },
-          ]);
+          
+          const botMessage: Message = {
+            id: messageIdCounter.current++,
+            text: botResponseText,
+            sender: "bot",
+            source: source as any,
+            usedGoogleSearch: usedSearch,
+          };
+          
+          setMessages((prev) => [...prev, botMessage]);
           setTypingMessage(null);
           setAvatarState("idle");
-          toggleSpeaking(botResponseText);
+
+          setConversationHistory([
+            ...newHistory,
+            { role: "assistant", content: botResponseText }
+          ]);
         }
-      }, 30);
+      }, typingSpeed);
+
     } catch (error: any) {
       console.error("Chat error:", error);
-      const errorMsg =
-        language === "en-US"
-          ? "Sorry, I couldn't connect to the server. Please try again."
-          : "क्षमा करें, सर्वर से कनेक्ट नहीं हो पाया। कृपया पुनः प्रयास करें।";
+      setIsLoading(false);
+      
+      const errorMsg = language === "en-US"
+        ? "Sorry, I couldn't connect to the server. Please make sure the backend is running."
+        : "क्षमा करें, सर्वर से कनेक्ट नहीं हो पाया।";
 
       setMessages((prev) => [
         ...prev,
@@ -349,6 +340,7 @@ const PayzonIndiaFAQ: React.FC = () => {
           source: "error",
         },
       ]);
+      setTypingMessage(null);
       setAvatarState("idle");
     }
   };
@@ -361,7 +353,6 @@ const PayzonIndiaFAQ: React.FC = () => {
 
   const toggleListening = () => {
     if (!recognitionRef.current || !speechSupported) return;
-
     if (isListening) {
       recognitionRef.current.stop();
     } else {
@@ -379,13 +370,19 @@ const PayzonIndiaFAQ: React.FC = () => {
 
   const toggleSpeaking = (text: string) => {
     if (!synthRef.current || !speechSupported) return;
-
     if (isSpeaking) {
       synthRef.current.cancel();
       setIsSpeaking(false);
       setAvatarState("idle");
     } else {
-      const utterance = new SpeechSynthesisUtterance(text);
+      const cleanText = text
+        .replace(/<[^>]*>/g, '')
+        .replace(/\*\*/g, '')
+        .replace(/\*/g, '')
+        .replace(/#{1,6}\s/g, '')
+        .replace(/`/g, '');
+
+      const utterance = new SpeechSynthesisUtterance(cleanText);
       utterance.lang = language;
       utterance.onstart = () => {
         setIsSpeaking(true);
@@ -395,8 +392,7 @@ const PayzonIndiaFAQ: React.FC = () => {
         setIsSpeaking(false);
         setAvatarState("idle");
       };
-      utterance.onerror = (error) => {
-        console.error("Speech synthesis error:", error);
+      utterance.onerror = () => {
         setIsSpeaking(false);
         setAvatarState("idle");
       };
@@ -406,16 +402,8 @@ const PayzonIndiaFAQ: React.FC = () => {
 
   const handleSearchMore = () => {
     if (typeof window !== "undefined") {
-      const searchQuery = encodeURIComponent("Payzon India Pvt Ltd " + (input || "services location contact offerings"));
+      const searchQuery = encodeURIComponent("Payzon India Pvt Ltd " + (input || "services"));
       window.open(`https://www.google.com/search?q=${searchQuery}`, "_blank");
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: messageIdCounter.current++,
-          text: language === "en-US" ? "I've opened Google search for more information about Payzon India." : "मैंने पेज़ोन इंडिया के बारे में अधिक जानकारी के लिए Google सर्च खोला है।",
-          sender: "bot",
-        },
-      ]);
     }
   };
 
@@ -427,16 +415,20 @@ const PayzonIndiaFAQ: React.FC = () => {
     setMessages([
       {
         id: 0,
-        text: language === "en-US" ? "Hello! I'm Grok, your AI assistant for Payzon India. Ask me anything about our services, location, contact, or offerings." : "नमस्ते! मैं ग्रोक हूं, पेज़ोन इंडिया के लिए आपका एआई असिस्टेंट। हमारी सेवाओं, स्थान, संपर्क, या ऑफरिंग्स के बारे में कुछ भी पूछें।",
+        text: language === "en-US" 
+          ? "Hello! I'm Grok, your AI assistant for Payzon India. Ask me anything!"
+          : "नमस्ते! मैं ग्रोक हूं, पेज़ोन इंडिया का एआई असिस्टेंट।",
         sender: "bot",
       },
     ]);
     messageIdCounter.current = 1;
+    setConversationHistory([]);
     localStorage.removeItem("faqChatHistory");
   };
 
   const copyMessage = (text: string) => {
-    navigator.clipboard.writeText(text);
+    const cleanText = text.replace(/<[^>]*>/g, '');
+    navigator.clipboard.writeText(cleanText);
   };
 
   const addReaction = (id: number, reaction: string) => {
@@ -446,12 +438,15 @@ const PayzonIndiaFAQ: React.FC = () => {
   };
 
   const exportChat = () => {
-    const chatText = messages.map((msg) => `${msg.sender.toUpperCase()}: ${msg.text}`).join("\n\n");
+    const chatText = messages.map((msg) => {
+      const cleanText = msg.text.replace(/<[^>]*>/g, '');
+      return `${msg.sender.toUpperCase()}: ${cleanText}`;
+    }).join("\n\n");
     const blob = new Blob([chatText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "payzon-chat.txt";
+    a.download = `payzon-chat-${new Date().toISOString().split('T')[0]}.txt`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -471,15 +466,14 @@ const PayzonIndiaFAQ: React.FC = () => {
             Payzon India AI Assistant
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mt-3 max-w-xl mx-auto">
-            {language === "en-US" ? "Ask about our innovative services, locations, or partnerships!" : "हमारी नवीन सेवाओं, स्थानों, या साझेदारियों के बारे में पूछें!"}
+            {language === "en-US" ? "Ask about our services • Powered by Google Search" : "हमारी सेवाओं के बारे में पूछें"}
           </p>
           <div className="flex justify-center gap-4 mt-4">
             <motion.button
               onClick={toggleLanguage}
               className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-700 text-white rounded-lg hover:scale-105 transition-transform"
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}         
-              aria-label={language === "en-US" ? "Switch to Hindi" : "Switch to English"}
+              whileTap={{ scale: 0.95 }}
             >
               {language === "en-US" ? "हिन्दी" : "English"}
             </motion.button>
@@ -488,16 +482,14 @@ const PayzonIndiaFAQ: React.FC = () => {
               className="px-4 py-2 bg-gradient-to-r from-destructive to-red-700 text-white rounded-lg hover:scale-105 transition-transform"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              aria-label="Clear chat history"
             >
-              <Trash2 className="inline w-5 h-5 mr-2 " /> Clear
+              <Trash2 className="inline w-5 h-5 mr-2" /> Clear
             </motion.button>
             <motion.button
               onClick={exportChat}
               className="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:scale-105 transition-transform"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              aria-label="Export chat"
             >
               <Download className="inline w-5 h-5 mr-2" /> Export
             </motion.button>
@@ -510,16 +502,18 @@ const PayzonIndiaFAQ: React.FC = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-                 <motion.div
+          <motion.div
             className="absolute -top-16 left-1/2 -translate-x-1/2 w-20 h-20"
             animate={{
               y: avatarState === "typing" ? [0, -10, 0] : avatarState === "speaking" ? [0, -5, 0] : 0,
               scale: avatarState === "speaking" ? [1, 1.1, 1] : 1,
+              rotate: isLoading ? 360 : 0,
             }}
             transition={{
-              duration: avatarState === "typing" ? 0.5 : 0.3,
-              repeat: avatarState !== "idle" ? Infinity : 0,
-              repeatType: "reverse",
+              duration: avatarState === "typing" ? 0.5 : isLoading ? 2 : 0.3,
+              repeat: avatarState !== "idle" || isLoading ? Infinity : 0,
+              repeatType: isLoading ? "loop" : "reverse",
+              ease: isLoading ? "linear" : "easeInOut",
             }}
           >
             <Image
@@ -527,10 +521,13 @@ const PayzonIndiaFAQ: React.FC = () => {
               alt="Grok AI Assistant"
               width={70} 
               height={70}
-           className="rounded-full border-2 border-blue-300 shadow-md"
-
+              className="rounded-full border-2 border-blue-300 shadow-md"
             />
+            {isLoading && (
+              <div className="absolute inset-0 rounded-full border-4 border-t-blue-500 border-r-transparent border-b-purple-500 border-l-transparent animate-spin" />
+            )}
           </motion.div>
+          
           <div className="h-[60vh] overflow-y-auto p-4 sm:p-6 space-y-4 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             <AnimatePresence>
               {messages.map((msg, index) => (
@@ -539,64 +536,139 @@ const PayzonIndiaFAQ: React.FC = () => {
                   initial={{ opacity: 0, y: 20, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.03 }}
                   className={`flex items-start gap-3 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                 >
                   {msg.sender === "bot" && (
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
+                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold flex-shrink-0">
                       G
                     </div>
                   )}
                   <div
-                    className={`max-w-[70%] sm:max-w-[60%] p-4 sm:p-5 rounded-2xl transition-all duration-300 hover:scale-105 ${
+                    className={`max-w-[75%] sm:max-w-[65%] p-4 sm:p-5 rounded-2xl transition-all duration-300 hover:scale-[1.01] ${
                       msg.sender === "user"
-                        ? "bg-gradient-to-r from-blue-600 to-purple-700 text-primary-foreground"
+                        ? "bg-gradient-to-r from-blue-600 to-purple-700 text-white"
                         : msg.source === "error"
                         ? "bg-destructive/10 text-destructive border border-destructive/20"
-                        : "bg-muted text-foreground border border-border"
+                        : "bg-muted/80 text-foreground border border-border backdrop-blur-sm"
                     }`}
                   >
-                    <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">{msg.text}</p>
-                    {msg.source && (
-                      <span className="text-xs mt-2 block opacity-60">
-                        {msg.source === "company-faq" ? "📋 Company FAQ" : msg.source === "ai" ? "🤖 Grok AI" : "⚠️ Error"}
-                      </span>
+                    <div className="text-sm sm:text-base leading-relaxed">
+                      {formatMessage(msg.text)}
+                    </div>
+                    {msg.source && msg.sender === "bot" && (
+                      <div className="flex items-center gap-2 mt-3 pt-3 border-t border-border/30">
+                        <span className="text-xs opacity-70 flex items-center gap-1">
+                          {msg.source === "company-faq" && <><Sparkles className="w-3 h-3" /> Company FAQ</>}
+                          {msg.source === "gemini-ai" && <><Brain className="w-3 h-3" /> Gemini AI</>}
+                          {msg.source === "gemini-with-search" && <><Search className="w-3 h-3" /> AI + Search</>}
+                          {msg.source === "error" && "⚠️ Error"}
+                        </span>
+                        {msg.usedGoogleSearch && (
+                          <span className="text-xs bg-green-500/20 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                            ✨ Real-time
+                          </span>
+                        )}
+                      </div>
                     )}
                     <div className="flex gap-2 mt-2">
-                      <button onClick={() => copyMessage(msg.text)} className="text-muted-foreground hover:text-foreground">
-                        <Copy className="w-4 h-4" />
+                      <button 
+                        onClick={() => copyMessage(msg.text)} 
+                        className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                        title="Copy"
+                      >
+                        <Copy className="w-3.5 h-3.5" />
                       </button>
-                      <button onClick={() => addReaction(msg.id, "👍")} className="text-muted-foreground hover:text-primary">
+                      <button 
+                        onClick={() => addReaction(msg.id, "👍")} 
+                        className="hover:scale-125 transition-transform"
+                      >
                         👍
                       </button>
-                      <button onClick={() => addReaction(msg.id, "❤️")} className="text-muted-foreground hover:text-red-500">
+                      <button 
+                        onClick={() => addReaction(msg.id, "❤️")} 
+                        className="hover:scale-125 transition-transform"
+                      >
                         ❤️
                       </button>
                     </div>
-                    {msg.reaction && <span className="text-2xl mt-1">{msg.reaction}</span>}
+                    {msg.reaction && <span className="text-xl mt-1 block">{msg.reaction}</span>}
                   </div>
                   {msg.sender === "user" && (
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-purple-700 flex items-center justify-center text-white not-first:font-bold">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-600 to-purple-700 flex items-center justify-center text-white font-bold flex-shrink-0">
                       U
                     </div>
                   )}
                 </motion.div>
               ))}
-              {typingMessage && (
+              
+              {/* Enhanced loading indicator */}
+              {isLoading && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start items-start gap-3"
                 >
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold">
+                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold flex-shrink-0 relative">
+                    <span className="animate-pulse">G</span>
+                    <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-ping" />
+                  </div>
+                  <div className="max-w-[70%] p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Brain className="w-4 h-4 text-blue-600 animate-pulse" />
+                      <span className="text-sm font-medium text-blue-900">{loadingMessage}</span>
+                    </div>
+                    
+                    {/* Progress bar */}
+                    <div className="w-full bg-blue-100 rounded-full h-2 mb-2 overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                        initial={{ width: "0%" }}
+                        animate={{ width: `${loadingProgress}%` }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    </div>
+                    
+                    {/* Animated dots */}
+                    <div className="flex gap-1 justify-center">
+                      <motion.span
+                        className="w-2 h-2 bg-blue-500 rounded-full"
+                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1, repeat: Infinity, delay: 0 }}
+                      />
+                      <motion.span
+                        className="w-2 h-2 bg-purple-500 rounded-full"
+                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1, repeat: Infinity, delay: 0.2 }}
+                      />
+                      <motion.span
+                        className="w-2 h-2 bg-blue-500 rounded-full"
+                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 1, repeat: Infinity, delay: 0.4 }}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+              
+              {/* Typing indicator */}
+              {typingMessage && !isLoading && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-start items-start gap-3"
+                >
+                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold flex-shrink-0">
                     G
                   </div>
-                  <div className="max-w-[60%] p-4 sm:p-5 rounded-2xl bg-muted text-foreground border border-border">
-                    <p className="text-sm sm:text-base leading-relaxed">{typingMessage}</p>
+                  <div className="max-w-[75%] p-4 rounded-2xl bg-muted/80 text-foreground border border-border backdrop-blur-sm">
+                    <div className="text-sm sm:text-base leading-relaxed">
+                      {formatMessage(typingMessage)}
+                    </div>
                     <div className="flex gap-1 mt-2">
-                      <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0s" }}></span>
-                      <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></span>
-                      <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></span>
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0s" }} />
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.15s" }} />
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.3s" }} />
                     </div>
                   </div>
                 </motion.div>
@@ -605,27 +677,27 @@ const PayzonIndiaFAQ: React.FC = () => {
             <div ref={messagesEndRef} />
           </div>
 
+          {/* Suggestions */}
           <AnimatePresence>
-            {suggestions.length > 0 && (
+            {suggestions.length > 0 && !isLoading && !typingMessage && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="px-4 sm:px-6 py-3 bg-muted/50 border-t border-border"
+                className="px-4 sm:px-6 py-3 bg-muted/30 border-t border-border"
               >
-                <p className="text-xs sm:text-sm text-muted-foreground mb-2">
-                  {language === "en-US" ? "Suggested Questions:" : "सुझाए गए प्रश्न:"}
+                <p className="text-xs sm:text-sm text-muted-foreground mb-2 font-medium">
+                  {language === "en-US" ? "💡 Suggested:" : "💡 सुझाव:"}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {suggestions.map((faq) => (
                     <motion.button
                       key={faq.id}
                       onClick={() => handleSuggestionClick(faq)}
-                      className="px-3 py-1 bg-primary/10 rounded-full text-foreground text-xs sm:text-sm hover:bg-primary/20 transition-all flex items-center gap-2"
+                      className="px-3 py-1.5 bg-primary/10 rounded-full text-foreground text-xs hover:bg-primary/20 transition-all"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <span className="text-primary text-xs">{faq.category}</span>
                       {language === "en-US" ? faq.question : faq.questionHindi}
                     </motion.button>
                   ))}
@@ -634,22 +706,18 @@ const PayzonIndiaFAQ: React.FC = () => {
             )}
           </AnimatePresence>
 
-          <div className="border-t border-border p-3 sm:p-4 flex items-center gap-2 sm:gap-3 bg-card">
+          {/* Input area */}
+          <div className="border-t border-border p-3 sm:p-4 flex items-center gap-2 sm:gap-3 bg-card/50 backdrop-blur-sm">
             <motion.button
               onClick={toggleListening}
-              disabled={!speechSupported}
+              disabled={!speechSupported || isLoading}
               className={`p-2 sm:p-3 rounded-xl transition-colors ${
                 isListening
                   ? "bg-destructive/30 text-destructive"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
-              }`}
-              animate={isListening ? { scale: [1, 1.1, 1] } : { scale: 1 }}
-              transition={{
-                duration: 0.3,
-                repeat: isListening ? Infinity : 0,
-                repeatType: "reverse",
-              }}
-              aria-label={isListening ? "Stop listening" : "Start listening"}
+              } disabled:opacity-50`}
+              whileHover={{ scale: isLoading ? 1 : 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Mic className="w-4 sm:w-5 h-4 sm:h-5" />
             </motion.button>
@@ -658,79 +726,68 @@ const PayzonIndiaFAQ: React.FC = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && handleSubmit()}
-              placeholder={language === "en-US" ? "Ask about Payzon India..." : "पेज़ोन इंडिया के बारे में पूछें..."}
-              className="flex-1 bg-transparent text-foreground border border-border rounded-lg p-2 outline-none text-sm sm:text-base placeholder-muted-foreground"
-              aria-label="Ask a question"
+              onKeyPress={(e) => e.key === "Enter" && !isLoading && handleSubmit()}
+              placeholder={language === "en-US" ? "Ask anything..." : "कुछ भी पूछें..."}
+              disabled={isLoading}
+              className="flex-1 bg-transparent text-foreground border border-border rounded-lg px-3 py-2 outline-none text-sm sm:text-base placeholder-muted-foreground disabled:opacity-50 focus:border-primary transition-colors"
             />
             <motion.button
               onClick={() => handleSubmit()}
-              className="p-2 sm:p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl text-white hover:scale-105 transition-transform"
-              whileHover={{ scale: 1.1 }}
+              disabled={isLoading || !input.trim()}
+              className="p-2 sm:p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl text-white hover:shadow-lg transition-all disabled:opacity-50"
+              whileHover={{ scale: isLoading ? 1 : 1.1 }}
               whileTap={{ scale: 0.95 }}
-              aria-label="Send message"
             >
               <Send className="w-4 sm:w-5 h-4 sm:h-5" />
             </motion.button>
             <motion.button
               onClick={handleSearchMore}
-              className="p-2 sm:p-3 bg-muted rounded-xl text-muted-foreground hover:bg-muted/80 transition-transform"
+              disabled={isLoading}
+              className="p-2 sm:p-3 bg-muted rounded-xl text-muted-foreground hover:bg-muted/80 transition-all disabled:opacity-50"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              aria-label="Search on Google"
             >
               <Search className="w-4 sm:w-5 h-4 sm:h-5" />
             </motion.button>
             <motion.button
               onClick={() => toggleSpeaking(messages[messages.length - 1]?.text || "")}
-              disabled={!speechSupported || messages.length <= 1 || messages[messages.length - 1].sender !== "bot"}
-              className={`p-2 sm:p-3 rounded-xl transition-colors ${
-                isSpeaking
-                  ? "bg-green-500/30 text-green-600"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+              disabled={!speechSupported || messages.length <= 1 || messages[messages.length - 1].sender !== "bot" || isLoading}
+              className={`p-2 sm:p-3 rounded-xl transition-colors disabled:opacity-50 ${
+                isSpeaking ? "bg-green-500/30 text-green-600" : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
-              animate={isSpeaking ? { scale: [1, 1.1, 1] } : { scale: 1 }}
-              transition={{
-                duration: 0.3,
-                repeat: isSpeaking ? Infinity : 0,
-                repeatType: "reverse",
-              }}
-              aria-label={isSpeaking ? "Stop speaking" : "Speak message"}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Volume2 className="w-4 sm:w-5 h-4 sm:h-5" />
             </motion.button>
           </div>
         </motion.div>
 
+        {/* Quick Links */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 w-full max-w-4xl"
         >
-          <p className="text-sm text-muted-foreground mb-2">
-            {language === "en-US" ? "Quick Links:" : "त्वरित लिंक:"}
+          <p className="text-sm text-muted-foreground mb-2 font-medium">
+            {language === "en-US" ? "🚀 Quick Links:" : "🚀 त्वरित लिंक:"}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {faqData.slice(0, 6).map((faq) => (
               <motion.button
                 key={faq.id}
                 onClick={() => handleSuggestionClick(faq)}
-                className="p-2 bg-primary/10 rounded-lg text-foreground text-xs sm:text-sm hover:bg-primary/20 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                disabled={isLoading}
+                className="p-2.5 bg-primary/5 hover:bg-primary/10 rounded-lg text-foreground text-xs sm:text-sm transition-all disabled:opacity-50 border border-primary/10"
+                whileHover={{ scale: isLoading ? 1 : 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 {language === "en-US" ? faq.question : faq.questionHindi}
               </motion.button>
             ))}
           </div>
         </motion.div>
-
-        {!speechSupported && (
-          <p className="text-destructive mt-4">
-            {language === "en-US" ? "Speech features are not supported in this browser." : "इस ब्राउज़र में स्पीच फीचर्स समर्थित नहीं हैं।"}
-          </p>
-        )}
       </div>
 
       <style>{`
@@ -746,6 +803,17 @@ const PayzonIndiaFAQ: React.FC = () => {
         .scrollbar-thin::-webkit-scrollbar-thumb {
           background: hsl(var(--primary) / 0.3);
           border-radius: 10px;
+        }
+        code {
+          background: hsl(var(--muted));
+          padding: 0.125rem 0.375rem;
+          border-radius: 0.25rem;
+          font-size: 0.875em;
+          font-family: 'Courier New', monospace;
+        }
+        strong {
+          font-weight: 600;
+          color: hsl(var(--primary));
         }
       `}</style>
     </div>

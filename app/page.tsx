@@ -22,8 +22,18 @@ import DigitalMarketingUI from "@/components/marketingpage";
 import CybersecuritySliderUI from "@/components/cyber1";
 import HowItWorks from "@/components/onemore";
 import CompanySection from "@/components/company";
+import {
+  useNavbarColor,
+  sectorGradients,
+} from "@/app/contexts/NavbarColorContext";
+import { useEffect } from "react";
+import TrustSection from "@/components/TrustSection";
+import SmartTaxIdeaSection from "@/components/SmartTaxIdeaSection";
 
 export default function Home() {
+
+  
+
   return (
     <main className="min-h-screen">
       <Hero />
@@ -36,10 +46,12 @@ export default function Home() {
       {/* <Services /> */}
       <DigitalMarketingUI />
       {/* <Stats /> */}
-      <CompanySection/>
+      {/* <CompanySection/> */}
       {/* <ITSolutionsSection /> */}
+      <TrustSection/>
       <CybersecuritySliderUI />
       <HowItWorks/>
+       <SmartTaxIdeaSection/>
       {/* <Team /> */}
       {/* <MarketingSection /> */}
       {/* <BusinessShowcase /> */}

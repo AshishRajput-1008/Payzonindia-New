@@ -1,15 +1,56 @@
 "use client";
 
-import React from "react";
-import { Phone, CheckCircle, ArrowRight, Megaphone, BadgeCheck, Hash, BarChart3, Truck, DollarSign, Target, TrendingUp } from "lucide-react";
+import React, { useEffect } from "react";
+import {
+  Phone,
+  CheckCircle,
+  ArrowRight,
+  Megaphone,
+  BadgeCheck,
+  Hash,
+  BarChart3,
+  Truck,
+  DollarSign,
+  Target,
+  TrendingUp,
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  ExternalLink,
+} from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
+import {
+  useNavbarColor,
+  sectorGradients,
+} from "@/app/contexts/NavbarColorContext";
+import { FaRupeeSign } from "react-icons/fa";
 
 const PyazonLandingPage: React.FC = () => {
+  const { setNavbarGradient, setPaymentGradient, setLogoGradient } =
+    useNavbarColor();
 
-   const services = [
+  useEffect(() => {
+    // Get gradients for this sector
+    const gradients = sectorGradients["Digital-marketing"];
+
+    // Set all three gradients
+    setNavbarGradient(gradients.navbar);
+    setPaymentGradient(gradients.payment);
+    setLogoGradient(gradients.logo);
+
+    // Cleanup: Reset to default
+    return () => {
+      const defaultGradients = sectorGradients["default"];
+      setNavbarGradient(defaultGradients.navbar);
+      setPaymentGradient(defaultGradients.payment);
+      setLogoGradient(defaultGradients.logo);
+    };
+  }, [setNavbarGradient, setPaymentGradient, setLogoGradient]);
+
+  const services = [
     { name: "IT Services", href: "/ventures/it-services/" },
     { name: "Digital Marketing", href: "/ventures/digital-marketing/" },
     { name: "E-commerce", href: "/ventures/e-commerce/" },
@@ -20,7 +61,7 @@ const PyazonLandingPage: React.FC = () => {
     {
       icon: (
         <svg
-          className="w-6 h-6 text-blue-300"
+          className="w-6 h-6 text-fuchsia-300"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -28,12 +69,13 @@ const PyazonLandingPage: React.FC = () => {
         </svg>
       ),
       title: "Data-Driven Strategies",
-      description: "Leverage analytics and insights to optimize campaigns for maximum impact.",
+      description:
+        "Leverage analytics and insights to optimize campaigns for maximum impact.",
     },
     {
       icon: (
         <svg
-          className="w-6 h-6 text-blue-300"
+          className="w-6 h-6 text-pink-300"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -41,12 +83,13 @@ const PyazonLandingPage: React.FC = () => {
         </svg>
       ),
       title: "Targeted Campaigns",
-      description: "Reach your ideal audience with precision targeting across multiple platforms.",
+      description:
+        "Reach your ideal audience with precision targeting across multiple platforms.",
     },
     {
       icon: (
         <svg
-          className="w-6 h-6 text-blue-300"
+          className="w-6 h-6 text-orange-300"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
@@ -54,18 +97,15 @@ const PyazonLandingPage: React.FC = () => {
         </svg>
       ),
       title: "Measurable ROI",
-      description: "Track performance with detailed reports to ensure every investment counts.",
+      description:
+        "Track performance with detailed reports to ensure every investment counts.",
     },
   ];
 
-  // Detailed blog-style content focused solely on Digital Marketing, sourced and expanded from https://www.payzonmarketing.com/
-  // This includes all aspects (APIs/services) like PR Services, Meta Verification, DLT Registration, SEO/SMO, Drop Shipping, Paid AD Campaigns, Lead Generation, and Business Booster.
-  // Structured as a long-form blog post with sections, headings, paragraphs for a narrative flow, no cards/grids.
-
   return (
     <div className="min-h-screen">
-      {/* Main Content */}
-      <div className="relative w-full min-h-screen flex items-center justify-center">
+      {/* Main Content - Improved Mobile Heading */}
+      <div className="relative w-full min-h-screen flex items-center justify-center pt-36 md:pt-56 lg:pt-64">
         <img
           src="/images/bg-pagetitle.jpg"
           alt=""
@@ -73,11 +113,16 @@ const PyazonLandingPage: React.FC = () => {
         />
         <div className="absolute inset-0 bg-black/70"></div>
 
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
-            Welcome to <span className="text-blue-500">Payzon</span>
+        <div className="relative z-10 text-center px-4 mb-[59px]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white drop-shadow-lg leading-tight">
+            Welcome to
+            <br className="block sm:hidden" />
+            <span className="block sm:inline"> </span>
+            <span className="bg-gradient-to-r from-fuchsia-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+              Payzon Digital Marketing
+            </span>
           </h1>
-          <p className="mt-4 text-lg md:text-2xl text-gray-200">
+          <p className="mt-6 text-lg md:text-2xl text-gray-200">
             Digital Marketing Excellence — Elevate Your Brand & Drive Growth
           </p>
         </div>
@@ -87,14 +132,14 @@ const PyazonLandingPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Sidebar - Takes 4 columns */}
           <motion.aside
-            className="lg:col-span-4"
+            className="lg:col-span-4 order-1 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="sticky top-48 space-y-8">
+            <div className="lg:sticky lg:top-48 space-y-8">
               {/* Services Menu */}
-              <div className="bg-white/30 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-blue-700/50">
+              <div className="bg-white/30 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-fuchsia-700/50">
                 <h2 className="text-2xl font-bold text-black mb-6 text-center">
                   Our Ventures
                 </h2>
@@ -102,7 +147,7 @@ const PyazonLandingPage: React.FC = () => {
                   {services.map((service, index) => (
                     <Link key={index} href={service.href}>
                       <motion.div
-                        className="bg-blue-700 hover:bg-blue-600 px-5 py-3 text-white rounded-full font-medium text-center cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                        className="bg-gradient-to-r from-fuchsia-600 via-pink-600 to-orange-600 hover:from-fuchsia-500 hover:via-pink-500 hover:to-orange-500 px-5 py-3 text-white rounded-full font-medium text-center cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -113,63 +158,63 @@ const PyazonLandingPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Contact Card */}
-                 <Link href={"/contact"}>
-              <motion.div
-                className="relative overflow-hidden rounded-2xl"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <Image
-                  src="/images/bg-info-box1.jpg"
-                  alt="Business People Silhouette"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className="relative px-6 py-20 flex flex-col items-center justify-center text-center">
-                  <motion.svg
-                    className="w-16 h-16 text-blue-300 mb-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <path d="M12 3C7.58 3 4 4.79 4 7V17C4 19.21 7.59 21 12 21S20 19.21 20 17V7C20 4.79 16.42 3 12 3M18 17C18 17.5 15.87 19 12 19S6 17.5 6 17V14.77C7.61 15.55 9.72 16 12 16S16.39 15.55 18 14.77V17M18 12.45C16.7 13.4 14.42 14 12 14C9.58 14 7.3 13.4 6 12.45V9.64C7.47 10.47 9.61 11 12 11C14.39 11 16.53 10.47 18 9.64V12.45M12 9C8.13 9 6 7.5 6 7S8.13 5 12 5C15.87 5 18 6.5 18 7S15.87 9 12 9Z" />
-                  </motion.svg>
-                  <h3 className="text-3xl font-bold text-white mb-3">
-                    Need Assistance?
-                  </h3>
-                  <div className="mb-4 flex flex-col items-center">
-                    <div className="flex items-center text-white mb-2">
-                      <Phone className="w-6 h-6 mr-2" />
-                      <span className="text-2xl font-semibold">
-                        +91 755 485 9540
-                      </span>
+              {/* Contact Card - Desktop Only */}
+              <Link href={"/contact"} className="hidden lg:block">
+                <motion.div
+                  className="relative overflow-hidden rounded-2xl"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <Image
+                    src="/images/bg-info-box1.jpg"
+                    alt="Business People Silhouette"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="relative px-6 py-20 flex flex-col items-center justify-center text-center">
+                    <motion.svg
+                      className="w-16 h-16 text-fuchsia-300 mb-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <path d="M12 3C7.58 3 4 4.79 4 7V17C4 19.21 7.59 21 12 21S20 19.21 20 17V7C20 4.79 16.42 3 12 3M18 17C18 17.5 15.87 19 12 19S6 17.5 6 17V14.77C7.61 15.55 9.72 16 12 16S16.39 15.55 18 14.77V17M18 12.45C16.7 13.4 14.42 14 12 14C9.58 14 7.3 13.4 6 12.45V9.64C7.47 10.47 9.61 11 12 11C14.39 11 16.53 10.47 18 9.64V12.45M12 9C8.13 9 6 7.5 6 7S8.13 5 12 5C15.87 5 18 6.5 18 7S15.87 9 12 9Z" />
+                    </motion.svg>
+                    <h3 className="text-3xl font-bold text-white mb-3">
+                      Need Assistance?
+                    </h3>
+                    <div className="mb-4 flex flex-col items-center">
+                      <div className="flex items-center text-white mb-2">
+                        <Phone className="w-6 h-6 mr-2" />
+                        <span className="text-2xl font-semibold">
+                          +91 755 485 9540
+                        </span>
+                      </div>
                     </div>
+                    <p className="text-white text-lg mb-6">
+                      Or reach out via our contact form:
+                    </p>
+                    <motion.button
+                      className="bg-gradient-to-r from-fuchsia-500 to-orange-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:from-fuchsia-400 hover:to-orange-400 transition-all duration-300 group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <span>Contact</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </motion.button>
                   </div>
-                  <p className="text-white text-lg mb-6">
-                    Or reach out via our contact form:
-                  </p>
-                  <motion.button
-                    className="bg-blue-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-blue-400 transition-all duration-300 group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span>Contact</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
-                </div>
-              </motion.div>
+                </motion.div>
               </Link>
             </div>
           </motion.aside>
 
           {/* Main Content Area - Takes 8 columns: Blog-Style Digital Marketing Page */}
           <motion.main
-            className="lg:col-span-8 space-y-8 prose prose-lg max-w-none"
+            className="lg:col-span-8 space-y-8 prose prose-lg max-w-none order-2 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -184,7 +229,7 @@ const PyazonLandingPage: React.FC = () => {
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 bg-blue-900/30"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-900/40 via-pink-900/40 to-orange-900/40"></div>
               </div>
               <div className="p-8">
                 <motion.h1
@@ -193,7 +238,8 @@ const PyazonLandingPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  Understanding Digital Marketing: A Comprehensive Guide from Payzon Marketing
+                  Understanding Digital Marketing: A Comprehensive Guide from
+                  Payzon Marketing
                 </motion.h1>
                 <motion.p
                   className="text-gray-700 text-base leading-relaxed mb-8"
@@ -201,16 +247,28 @@ const PyazonLandingPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  In today's fast-paced digital world, digital marketing has become the cornerstone of business growth. At Payzon Marketing, we specialize in crafting strategies that not only elevate your brand but also drive measurable results. This in-depth guide explores the intricacies of digital marketing, drawing from our expertise in services like SEO, paid campaigns, PR, and more. Whether you're a startup or an established enterprise, understanding these elements can transform how you connect with your audience.
+                  In today's fast-paced digital world, digital marketing has
+                  become the cornerstone of business growth. At Payzon
+                  Marketing, we specialize in crafting strategies that not only
+                  elevate your brand but also drive measurable results. This
+                  in-depth guide explores the intricacies of digital marketing,
+                  drawing from our expertise in services like SEO, paid
+                  campaigns, PR, and more. Whether you're a startup or an
+                  established enterprise, understanding these elements can
+                  transform how you connect with your audience.
                 </motion.p>
                 <motion.div
-                  className="bg-blue-50 p-6 rounded-lg"
+                  className="bg-gradient-to-r from-fuchsia-50 via-pink-50 to-orange-50 p-6 rounded-lg"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <CheckCircle className="w-6 h-6 text-green-400 inline-block mr-2" />
-                  <span className="text-green-700 font-semibold">Key Insight:</span> Digital marketing isn't just about ads—it's about building authentic relationships through data-driven approaches.
+                  <CheckCircle className="w-6 h-6 text-fuchsia-600 inline-block mr-2" />
+                  <span className="text-fuchsia-700 font-semibold">
+                    Key Insight:
+                  </span>{" "}
+                  Digital marketing isn't just about ads—it's about building
+                  authentic relationships through data-driven approaches.
                 </motion.div>
               </div>
             </section>
@@ -231,7 +289,16 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Digital marketing encompasses all marketing efforts that use the internet or electronic devices to promote products and services. Unlike traditional marketing, it allows for real-time tracking, personalization, and scalability. At Payzon Marketing, we leverage channels like search engines, social media, email, and mobile apps to reach billions of users worldwide. According to industry reports, businesses that invest in digital marketing see up to 2.8 times more revenue growth than those that don't. Our approach ensures your campaigns are not only visible but also convertible, focusing on ROI from day one.
+                Digital marketing encompasses all marketing efforts that use the
+                internet or electronic devices to promote products and services.
+                Unlike traditional marketing, it allows for real-time tracking,
+                personalization, and scalability. At Payzon Marketing, we
+                leverage channels like search engines, social media, email, and
+                mobile apps to reach billions of users worldwide. According to
+                industry reports, businesses that invest in digital marketing
+                see up to 2.8 times more revenue growth than those that don't.
+                Our approach ensures your campaigns are not only visible but
+                also convertible, focusing on ROI from day one.
               </motion.p>
               <motion.p
                 className="text-gray-700 text-base leading-relaxed mb-6"
@@ -239,7 +306,11 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                From optimizing your online presence to running targeted ads, digital marketing is about meeting customers where they are—online. Payzon's integrated solutions, including SEO/SMO services and paid ad campaigns, help businesses skyrocket their visibility and engagement.
+                From optimizing your online presence to running targeted ads,
+                digital marketing is about meeting customers where they
+                are—online. Payzon's integrated solutions, including SEO/SMO
+                services and paid ad campaigns, help businesses skyrocket their
+                visibility and engagement.
               </motion.p>
               <Image
                 src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop"
@@ -251,7 +322,7 @@ const PyazonLandingPage: React.FC = () => {
             </section>
 
             {/* Blog Section 2: Core Pillars of Digital Marketing at Payzon */}
-            <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-xl p-8">
+            <section className="bg-gradient-to-r from-fuchsia-50 via-pink-50 to-orange-50 rounded-2xl shadow-xl p-8">
               <motion.h2
                 className="text-3xl font-bold text-gray-900 mb-6"
                 initial={{ y: 20, opacity: 0 }}
@@ -266,7 +337,15 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                At the heart of digital marketing are Search Engine Optimization (SEO) and Social Media Optimization (SMO). SEO involves enhancing your website's visibility on search engines like Google through keyword research, on-page optimization, and link-building strategies. Payzon's SEO/SMO services are tailored to drive organic traffic, ensuring your brand ranks higher without constant ad spend. For instance, we analyze user intent and competitor strategies to create content that resonates, leading to sustained growth.
+                At the heart of digital marketing are Search Engine Optimization
+                (SEO) and Social Media Optimization (SMO). SEO involves
+                enhancing your website's visibility on search engines like
+                Google through keyword research, on-page optimization, and
+                link-building strategies. Payzon's SEO/SMO services are tailored
+                to drive organic traffic, ensuring your brand ranks higher
+                without constant ad spend. For instance, we analyze user intent
+                and competitor strategies to create content that resonates,
+                leading to sustained growth.
               </motion.p>
               <motion.p
                 className="text-gray-700 text-base leading-relaxed mb-6"
@@ -274,16 +353,24 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                Complementing this is performance marketing, particularly our Paid AD Campaigns. We design data-driven ads on platforms like Google Ads, Facebook, and Instagram, optimizing for clicks, conversions, and ROI. By A/B testing creatives and targeting demographics precisely, we've helped clients achieve up to 300% ROI. Lead Generation ties into this, using targeted campaigns and analytics to fuel sales pipelines with qualified prospects.
+                Complementing this is performance marketing, particularly our
+                Paid AD Campaigns. We design data-driven ads on platforms like
+                Google Ads, Facebook, and Instagram, optimizing for clicks,
+                conversions, and ROI. By A/B testing creatives and targeting
+                demographics precisely, we've helped clients achieve up to 300%
+                ROI. Lead Generation ties into this, using targeted campaigns
+                and analytics to fuel sales pipelines with qualified prospects.
               </motion.p>
-              <BarChart3 className="w-12 h-12 text-blue-500 mx-auto mb-6" />
+              <BarChart3 className="w-12 h-12 text-fuchsia-500 mx-auto mb-6" />
               <motion.p
-                className="text-gray-700 text-base leading-relaxed"
+                className="text-gray-700 text-base leading-relaxed mb-6"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                Our Business Booster package integrates these pillars with branding and automation, accelerating growth for startups by combining SEO, ads, and lead gen into a seamless strategy.
+                Our Business Booster package integrates these pillars with
+                branding and automation, accelerating growth for startups by
+                combining SEO, ads, and lead gen into a seamless strategy.
               </motion.p>
             </section>
 
@@ -295,7 +382,8 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                Advanced Digital Strategies: PR, Verification, and Compliance in the Digital Age
+                Advanced Digital Strategies: PR, Verification, and Compliance in
+                the Digital Age
               </motion.h2>
               <motion.p
                 className="text-gray-700 text-base leading-relaxed mb-6"
@@ -303,7 +391,15 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Beyond basics, digital marketing requires trust-building tools like PR Services and Meta Verification. Our PR services amplify your brand through compelling stories, media relations, press releases, and influencer partnerships. We've navigated crises for clients, turning challenges into opportunities for visibility. Meta Verification Services secure the coveted blue tick on platforms like Facebook and Instagram, boosting authenticity and preventing impersonation—essential for credibility in a crowded digital space.
+                Beyond basics, digital marketing requires trust-building tools
+                like PR Services and Meta Verification. Our PR services amplify
+                your brand through compelling stories, media relations, press
+                releases, and influencer partnerships. We've navigated crises
+                for clients, turning challenges into opportunities for
+                visibility. Meta Verification Services secure the coveted blue
+                tick on platforms like Facebook and Instagram, boosting
+                authenticity and preventing impersonation—essential for
+                credibility in a crowded digital space.
               </motion.p>
               <motion.p
                 className="text-gray-700 text-base leading-relaxed mb-6"
@@ -311,12 +407,19 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                For seamless campaigns, DLT Registration ensures compliance with telecom regulations for SMS and voice marketing in India. We handle operator onboarding, template approvals, and end-to-end processes, allowing you to focus on strategy without legal hurdles. These services integrate with our e-commerce offerings, like Drop Shipping, where we set up inventory-free stores with sourcing, fulfillment, and marketing to scale your online presence effortlessly.
+                For seamless campaigns, DLT Registration ensures compliance with
+                telecom regulations for SMS and voice marketing in India. We
+                handle operator onboarding, template approvals, and end-to-end
+                processes, allowing you to focus on strategy without legal
+                hurdles. These services integrate with our e-commerce offerings,
+                like Drop Shipping, where we set up inventory-free stores with
+                sourcing, fulfillment, and marketing to scale your online
+                presence effortlessly.
               </motion.p>
               <div className="flex justify-center mb-6">
-                <Megaphone className="w-12 h-12 text-blue-500 mr-4" />
-                <BadgeCheck className="w-12 h-12 text-blue-500 mr-4" />
-                <Hash className="w-12 h-12 text-blue-500" />
+                <Megaphone className="w-12 h-12 text-fuchsia-500 mr-4" />
+                <BadgeCheck className="w-12 h-12 text-pink-500 mr-4" />
+                <Hash className="w-12 h-12 text-orange-500" />
               </div>
               <motion.p
                 className="text-gray-700 text-base leading-relaxed"
@@ -324,12 +427,14 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                Together, these advanced APIs (aspects) form a robust digital marketing ecosystem at Payzon, ensuring compliance, trust, and amplified reach.
+                Together, these advanced APIs (aspects) form a robust digital
+                marketing ecosystem at Payzon, ensuring compliance, trust, and
+                amplified reach.
               </motion.p>
             </section>
 
             {/* Blog Section 4: Measuring Success and Future Trends */}
-            <section className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl shadow-xl p-8">
+            <section className="bg-gradient-to-r from-orange-50 via-pink-50 to-fuchsia-50 rounded-2xl shadow-xl p-8">
               <motion.h2
                 className="text-3xl font-bold text-gray-900 mb-6"
                 initial={{ y: 20, opacity: 0 }}
@@ -344,50 +449,305 @@ const PyazonLandingPage: React.FC = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Success in digital marketing is quantifiable. We provide detailed reports on metrics like CTR, conversion rates, and customer acquisition costs. Our data-driven strategies ensure every campaign is optimized for maximum impact, with tools for real-time adjustments. Looking ahead, trends like AI personalization, voice search, and Web3 integration are shaping the future—Payzon is at the forefront, incorporating these into our services for forward-thinking clients.
+                Success in digital marketing is quantifiable. We provide
+                detailed reports on metrics like CTR, conversion rates, and
+                customer acquisition costs. Our data-driven strategies ensure
+                every campaign is optimized for maximum impact, with tools for
+                real-time adjustments. Looking ahead, trends like AI
+                personalization, voice search, and Web3 integration are shaping
+                the future—Payzon is at the forefront, incorporating these into
+                our services for forward-thinking clients.
               </motion.p>
-              <DollarSign className="w-12 h-12 text-blue-500 mx-auto mb-6" />
+              <FaRupeeSign className="w-12 h-12 text-orange-500 mx-auto mb-6" />
               <motion.p
                 className="text-gray-700 text-base leading-relaxed"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                By focusing on targeted campaigns and measurable ROI, Payzon helps businesses thrive in the digital landscape.
+                By focusing on targeted campaigns and measurable ROI, Payzon
+                helps businesses thrive in the digital landscape.
               </motion.p>
+
+              {/* Closing Section: Call to Action */}
+              <section className="mt-6 bg-gradient-to-r from-fuchsia-900 via-pink-900 to-orange-900 text-white rounded-2xl shadow-xl p-8 text-center">
+                <Link href={"/contact"}>
+                  <motion.h2
+                    className="text-3xl font-bold mb-6"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    Ready to Elevate Your Digital Marketing?
+                  </motion.h2>
+                  <motion.p
+                    className="text-pink-100 text-base leading-relaxed mb-6"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
+                    Partner with Payzon Marketing for expert digital strategies
+                    that drive growth. Contact us today to get started.
+                  </motion.p>
+                  <motion.button
+                    className="bg-gradient-to-r from-fuchsia-500 to-orange-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 mx-auto hover:from-fuchsia-400 hover:to-orange-400 transition-all duration-300 group"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span>Get Started</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
+                </Link>
+              </section>
             </section>
 
-            {/* Closing Section: Call to Action */}
-            <section className="bg-blue-900 text-white rounded-2xl shadow-xl p-8 text-center">
-               <Link href={"/contact"}>
-              <motion.h2
-                className="text-3xl font-bold mb-6"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+            {/* Connect With Us Card - Mobile Only, After CTA */}
+            <motion.div
+              className="lg:hidden bg-white/30 backdrop-blur-md rounded-xl p-3 shadow-xl border border-fuchsia-700/50"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <h3 className="text-base font-bold text-black mb-2 text-center">
+                Connect With Us
+              </h3>
+              <p className="text-gray-700 text-center mb-3 text-xs">
+                Follow us on social media for updates and insights
+              </p>
+              <div className="grid grid-cols-2 gap-2 mb-3">
+                <a
+                  href="https://www.facebook.com/PAYZONINDIA/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <motion.div
+                    className="bg-gradient-to-br from-blue-500 to-blue-700 p-2 rounded-lg flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Facebook className="w-5 h-5 text-white mb-1" />
+                    <span className="text-white text-[10px] font-medium">
+                      Facebook
+                    </span>
+                  </motion.div>
+                </a>
+
+                <a
+                  href="https://www.instagram.com/thepayzonindia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <motion.div
+                    className="bg-gradient-to-br from-pink-500 via-purple-500 to-orange-500 p-2 rounded-lg flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Instagram className="w-5 h-5 text-white mb-1" />
+                    <span className="text-white text-[10px] font-medium">
+                      Instagram
+                    </span>
+                  </motion.div>
+                </a>
+
+                <a
+                  href="https://x.com/PayzonIndia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <motion.div
+                    className="bg-gradient-to-br from-sky-400 to-sky-600 p-2 rounded-lg flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Twitter className="w-5 h-5 text-white mb-1" />
+                    <span className="text-white text-[10px] font-medium">
+                      Twitter
+                    </span>
+                  </motion.div>
+                </a>
+
+                <a
+                  href="https://www.youtube.com/@payzonindiadigitalsolutions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <motion.div
+                    className="bg-gradient-to-br from-red-500 to-red-700 p-2 rounded-lg flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Youtube className="w-5 h-5 text-white mb-1" />
+                    <span className="text-white text-[10px] font-medium">
+                      YouTube
+                    </span>
+                  </motion.div>
+                </a>
+              </div>
+
+              <a
+                href="https://payzonmarketing.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <motion.div
+                  className="bg-gradient-to-r from-fuchsia-600 via-pink-600 to-orange-600 hover:from-fuchsia-500 hover:via-pink-500 hover:to-orange-500 px-3 py-2 text-white rounded-lg font-medium text-center cursor-pointer transition-all duration-300 flex items-center justify-center gap-1 text-xs"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <ExternalLink className="w-3 h-3" />
+                  <span>Visit Our Website</span>
+                </motion.div>
+              </a>
+            </motion.div>
+
+            {/* Social Media CTA Box - Hidden, using sidebar version instead */}
+            <div className="hidden">
+              <motion.div
+                className="bg-gradient-to-r from-fuchsia-600 via-pink-600 to-orange-600 rounded-xl p-6 mt-8"
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <div className="text-center text-white">
+                  <h3 className="text-xl font-bold mb-3">
+                    Stay Connected With Us
+                  </h3>
+                  <p className="mb-4 text-pink-100">
+                    Follow us on social media for the latest digital marketing
+                    tips and updates
+                  </p>
+                  <div className="flex justify-center gap-4 mb-4">
+                    <a
+                      href="https://www.facebook.com/PAYZONINDIA/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <motion.div
+                        className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-all"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Facebook className="w-6 h-6" />
+                      </motion.div>
+                    </a>
+                    <a
+                      href="https://www.instagram.com/thepayzonindia"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <motion.div
+                        className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-all"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Instagram className="w-6 h-6" />
+                      </motion.div>
+                    </a>
+                    <a
+                      href="https://x.com/PayzonIndia"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <motion.div
+                        className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-all"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Twitter className="w-6 h-6" />
+                      </motion.div>
+                    </a>
+                    <a
+                      href="https://www.youtube.com/@payzonindiadigitalsolutions"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <motion.div
+                        className="bg-white/20 backdrop-blur-sm p-3 rounded-full hover:bg-white/30 transition-all"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Youtube className="w-6 h-6" />
+                      </motion.div>
+                    </a>
+                  </div>
+                  <a
+                    href="https://payzonmarketing.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <motion.button
+                      className="bg-white text-fuchsia-600 px-6 py-2 rounded-full font-semibold hover:bg-pink-50 transition-all flex items-center gap-2 mx-auto"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <span>Visit Our Website</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </motion.button>
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </motion.main>
+        </div>
+      </div>
+
+      {/* Contact Card - Mobile Bottom Only */}
+      <div className="max-w-7xl mx-auto px-4 pb-16 sm:px-6 lg:px-8 lg:hidden">
+        <Link href={"/contact"}>
+          <motion.div
+            className="relative overflow-hidden rounded-2xl"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Image
+              src="/images/bg-info-box1.jpg"
+              alt="Business People Silhouette"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="relative px-6 py-20 flex flex-col items-center justify-center text-center">
+              <motion.svg
+                className="w-16 h-16 text-fuchsia-300 mb-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                Ready to Elevate Your Digital Marketing?
-              </motion.h2>
-              <motion.p
-                className="text-blue-100 text-base leading-relaxed mb-6"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                Partner with Payzon Marketing for expert digital strategies that drive growth. Contact us today to get started.
-              </motion.p>
+                <path d="M12 3C7.58 3 4 4.79 4 7V17C4 19.21 7.59 21 12 21S20 19.21 20 17V7C20 4.79 16.42 3 12 3M18 17C18 17.5 15.87 19 12 19S6 17.5 6 17V14.77C7.61 15.55 9.72 16 12 16S16.39 15.55 18 14.77V17M18 12.45C16.7 13.4 14.42 14 12 14C9.58 14 7.3 13.4 6 12.45V9.64C7.47 10.47 9.61 11 12 11C14.39 11 16.53 10.47 18 9.64V12.45M12 9C8.13 9 6 7.5 6 7S8.13 5 12 5C15.87 5 18 6.5 18 7S15.87 9 12 9Z" />
+              </motion.svg>
+              <h3 className="text-3xl font-bold text-white mb-3">
+                Need Assistance?
+              </h3>
+              <div className="mb-4 flex flex-col items-center">
+                <div className="flex items-center text-white mb-2">
+                  <Phone className="w-6 h-6 mr-2" />
+                  <span className="text-2xl font-semibold">
+                    +91 755 485 9540
+                  </span>
+                </div>
+              </div>
+              <p className="text-white text-lg mb-6">
+                Or reach out via our contact form:
+              </p>
               <motion.button
-                className="bg-blue-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 mx-auto hover:bg-blue-400 transition-all duration-300 group"
+                className="bg-gradient-to-r from-fuchsia-500 to-orange-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:from-fuchsia-400 hover:to-orange-400 transition-all duration-300 group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Get Started</span>
+                <span>Contact</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
-              </Link>
-            </section>
-          </motion.main>
-        </div>
+            </div>
+          </motion.div>
+        </Link>
       </div>
     </div>
   );

@@ -101,7 +101,7 @@ const CyberSecurityPage: React.FC = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-red-900/80 to-black/80"></div>
 
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center px-4 mt-[190px]">
           <motion.h1
             className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg"
             initial={{ y: -50, opacity: 0 }}
@@ -151,48 +151,47 @@ const CyberSecurityPage: React.FC = () => {
               </div>
 
               {/* Contact Card */}
-               <Link href="/contact">
-              <motion.div
-                className="relative overflow-hidden rounded-2xl"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <Image
-                  src="/images/bg-info-box1.jpg"
-                  alt="Security Consultation"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className="relative px-6 py-20 flex flex-col items-center justify-center text-center">
-                  <Shield className="w-16 h-16 text-red-300 mb-4" />
-                  <h3 className="text-3xl font-bold text-white mb-3">
-                    Secure Your Business
-                  </h3>
-                  <div className="mb-4 flex flex-col items-center">
-                    <div className="flex items-center text-white mb-2">
-                      <Phone className="w-6 h-6 mr-2" />
-                      <span className="text-2xl font-semibold">
-                        +91 755 485 9540
-                      </span>
+              <Link href="/contact">
+                <motion.div
+                  className="relative overflow-hidden rounded-2xl"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <Image
+                    src="/images/bg-info-box1.jpg"
+                    alt="Security Consultation"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="relative px-6 py-20 flex flex-col items-center justify-center text-center">
+                    <Shield className="w-16 h-16 text-red-300 mb-4" />
+                    <h3 className="text-3xl font-bold text-white mb-3">
+                      Secure Your Business
+                    </h3>
+                    <div className="mb-4 flex flex-col items-center">
+                      <div className="flex items-center text-white mb-2">
+                        <Phone className="w-6 h-6 mr-2" />
+                        <span className="text-2xl font-semibold">
+                          +91 755 485 9540
+                        </span>
+                      </div>
                     </div>
+                    <p className="text-white text-lg mb-6">
+                      Get expert security consultation today
+                    </p>
+                    <motion.button
+                      className="bg-red-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-red-400 transition-all duration-300 group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <span>Contact Us</span>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </motion.button>
                   </div>
-                  <p className="text-white text-lg mb-6">
-                    Get expert security consultation today
-                  </p>
-                  <motion.button
-                    className="bg-red-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-red-400 transition-all duration-300 group"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span>Contact Us</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
-                </div>
-              </motion.div>
+                </motion.div>
               </Link>
-
             </div>
           </motion.aside>
 

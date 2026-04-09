@@ -38,6 +38,7 @@ const companies: Company[] = [
     logo: "/images/PAYZONINDIA-pngLogo.png",
     url: "https://www.payzonapi.com",
     url1: "www.payzonapi.com",
+
   },
 ];
 

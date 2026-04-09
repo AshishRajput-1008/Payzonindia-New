@@ -86,7 +86,7 @@ const ItfirmLogo: React.FC<ItfirmLogoProps> = ({
   );
 };
 
-// UPDATED: Working Sector now includes FMCG with nested items
+// UPDATED: "Audit Report" replaced with "Profile" (Our Profile + Our Team)
 const navigationItems: NavigationItem[] = [
   {
     name: "Ventures",
@@ -111,10 +111,13 @@ const navigationItems: NavigationItem[] = [
     ],
   },
   {
-    name: "Audit Report",
-    href: "#audit",
+    name: "Profile",
+    href: "/about",
     hasDropdown: true,
-    dropdownItems: [{ name: "Current Audit Reports", href: "/audit" }],
+    dropdownItems: [
+      { name: "Our Profile", href: "/about" },
+      { name: "Our Team", href: "/our-team" },
+    ],
   },
   {
     name: "Investor Program",
@@ -128,6 +131,7 @@ const navigationItems: NavigationItem[] = [
     hasDropdown: true,
     dropdownItems: [
       { name: "IT Services", href: "/sector/it-services" },
+      { name: "Digital Marketing ", href: "/ventures/digital-marketing/" },
       { name: "Cyber Security", href: "/sector/cyber-security" },
       { name: "Skills Development", href: "/sector/skills-development" },
       { name: "Divine Industries", href: "/sector/divine-industries" },
@@ -157,7 +161,7 @@ const navigationItems: NavigationItem[] = [
       { name: "Sign In", href: "https://ekyc.payzonindia.com/account/sign-in" },
       {
         name: "Create Accounts",
-        href: "https://ekyc.payzonindia.com/account/sign-in",
+        href: "https://ekyc.payzonindia.com/account/Registration",
       },
       { name: "Payments", href: "/payment" },
     ],
@@ -169,12 +173,12 @@ export default function Navbar() {
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openNestedDropdown, setOpenNestedDropdown] = useState<string | null>(
-    null
+    null,
   );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [hoveredNestedItem, setHoveredNestedItem] = useState<string | null>(
-    null
+    null,
   );
   const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
@@ -202,9 +206,18 @@ export default function Navbar() {
     setOpenNestedDropdown(null);
   };
 
+  // NEW FUNCTION ADDED
+  const handlePaymentClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    setOpenDropdown(null);
+    setOpenNestedDropdown(null);
+    router.push("/payment");
+  };
+
   const handleSmoothScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    href: string
+    href: string,
   ) => {
     if (href.startsWith("#")) {
       e.preventDefault();
@@ -471,15 +484,12 @@ export default function Navbar() {
                             <div className="relative py-3 px-3">
                               {item.dropdownItems.map((drop, idx) => (
                                 <div key={idx} className="relative">
-                                  {/* Main Dropdown Item */}
-                                {/* Main Dropdown Item */}
-<div>
-  <Link
-    href={drop.href}
-    onClick={(e) => {
-      // Desktop: Just navigate, no nested dropdown
-      handleSmoothScroll(e as any, drop.href);
-    }}
+                                  <div>
+                                    <Link
+                                      href={drop.href}
+                                      onClick={(e) => {
+                                        handleSmoothScroll(e as any, drop.href);
+                                      }}
                                       className="group relative flex items-center w-full text-left mx-1 mb-1 px-5 py-3 text-base font-bold text-white hover:text-white bg-white/10 hover:bg-white/25 rounded-2xl transition-all duration-500 transform hover:scale-[1.03] hover:shadow-xl border border-white/20 hover:border-white/40 backdrop-blur-lg overflow-hidden"
                                     >
                                       <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 group-hover:from-white/20 group-hover:via-white/30 group-hover:to-white/20 rounded-2xl transition-all duration-700"></div>
@@ -508,40 +518,6 @@ export default function Navbar() {
                                       <div className="absolute top-2 right-2 w-2 h-2 bg-white/60 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-150"></div>
                                     </Link>
                                   </div>
-
-                                  {/* Nested Items Below FMCG */}
-                                  {/* {drop.hasNested &&
-                                    openNestedDropdown === drop.name && (
-                                      <div className="ml-4 mt-1 mb-2 space-y-1 animate-slideDown">
-                                        {drop.nestedItems?.map(
-                                          (nested, nIdx) => (
-                                            <Link
-                                              key={nIdx}
-                                              href={nested.href}
-                                              onClick={(e) =>
-                                                handleSmoothScroll(
-                                                  e as any,
-                                                  nested.href
-                                                )
-                                              }
-                                              className="group relative flex items-center w-full text-left px-4 py-2.5 text-sm font-semibold text-white hover:text-white bg-white/5 hover:bg-white/20 rounded-xl transition-all duration-500 transform hover:scale-[1.02] hover:shadow-lg border border-white/10 hover:border-white/30 backdrop-blur-lg overflow-hidden"
-                                            >
-                                              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 group-hover:from-white/15 group-hover:via-white/25 group-hover:to-white/15 rounded-xl transition-all duration-700"></div>
-                                              <div className="w-2 h-2 mr-3 bg-white/40 group-hover:bg-white/80 rounded-full transition-all duration-300"></div>
-                                              <span className="flex-1 relative z-10 group-hover:translate-x-1 transition-all duration-500 text-slate-300 group-hover:text-white drop-shadow-lg text-xs">
-                                                {nested.name}
-                                              </span>
-                                              <ArrowRight
-                                                size={12}
-                                                className="opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-1"
-                                              />
-                                            </Link>
-                                          )
-                                        )}
-                                      </div>
-                                    )} */}
-
-
                                 </div>
                               ))}
                             </div>
@@ -654,7 +630,11 @@ export default function Navbar() {
                                   e.preventDefault();
                                   handleNestedToggle(drop.name);
                                 } else {
-                                  window.location.href = drop.href;
+                                  // Close mobile menu before navigation
+                                  setIsMobileMenuOpen(false);
+                                  setOpenDropdown(null);
+                                  setOpenNestedDropdown(null);
+                                  router.push(drop.href);
                                 }
                               }}
                               className="group flex items-center w-full text-left px-4 py-3 mb-2 text-sm font-semibold text-gray-700 hover:text-white bg-white/60 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 rounded-xl border border-blue-100/30 hover:border-transparent transform hover:scale-[1.02] transition-all duration-300 shadow-sm hover:shadow-lg backdrop-blur-sm"
@@ -695,7 +675,7 @@ export default function Navbar() {
                                       onClick={(e) =>
                                         handleSmoothScroll(
                                           e as any,
-                                          nested.href
+                                          nested.href,
                                         )
                                       }
                                       className="group flex items-center w-full text-left px-3 py-2 text-xs font-semibold text-gray-600 hover:text-white bg-white/40 hover:bg-gradient-to-r hover:from-blue-400 hover:to-blue-500 rounded-lg border border-blue-50 hover:border-transparent transform hover:scale-[1.01] transition-all duration-300 shadow-sm hover:shadow-md"
@@ -722,7 +702,7 @@ export default function Navbar() {
             </ul>
           </div>
 
-          <Link href="/payment">
+          <div onClick={handlePaymentClick} className="cursor-pointer">
             <div className="mx-6 mb-6 px-6 py-3 bg-gradient-to-br from-white via-blue-50 to-blue-50 rounded-2xl shadow-md hover:shadow-xl border border-blue-200 transition-shadow duration-300 cursor-pointer">
               <div className="flex items-center space-x-4">
                 <div className="p-3 bg-blue-100 rounded-full">
@@ -735,7 +715,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
 
           <div className="mx-6 mb-6 p-6 bg-gradient-to-br from-white via-blue-50 to-blue-50 rounded-3xl shadow-lg border border-blue-100">
             <div className="flex items-center gap-2 mb-4">

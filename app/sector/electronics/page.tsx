@@ -99,7 +99,7 @@ const ElectronicsPage: React.FC = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/80 to-blue-900/80"></div>
 
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center px-4 mt-[190px]">
           <motion.h1
             className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg"
             initial={{ y: -50, opacity: 0 }}
@@ -454,7 +454,7 @@ const ElectronicsPage: React.FC = () => {
               </section>
 
               {/* CTA Section */}
-           <Link href="https://www.payzonshoppy.com/">
+              <Link href="https://www.payzonshoppy.com/">
                 <section className="text-center py-8 border-t border-gray-200">
                   <motion.h2
                     className="text-3xl font-bold text-gray-900 mb-4"

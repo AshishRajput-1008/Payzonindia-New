@@ -18,9 +18,9 @@ const DigitalMarketingUI: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <p className="text-red-500 font-bold text-sm uppercase tracking-wider mb-2 sm:mb-4">
+          <h1 className="text-red-500 font-extrabold text-xl sm:text-base md:text-3xl uppercase tracking-widest mb-6 lg:mb-8 mt-8 sm:mb-4 drop-shadow-lg">
             DIGITAL MARKETING SERVICES
-          </p>
+          </h1>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight max-w-4xl mx-auto">
             DROP-SHIPPING, ADVANCE LEAD
             <br />
@@ -59,21 +59,21 @@ const DigitalMarketingUI: React.FC = () => {
           {/* Right Side - White + Black Boxes */}
           <div className="lg:col-span-9 flex flex-col lg:flex-row gap-6 lg:gap-0">
             {/* White Box */}
-            <div className="bg-white p-6 sm:p-10 flex-1 shadow-xl">
-              <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-gray-900 mb-1">
+            <div className="bg-white p-8 sm:p-10 flex-1 shadow-xl">
+              <h2 className="text-3xl sm:text-3xl md:text-3xl font-bold text-gray-900 mb-1">
                 Business
               </h2>
-              <h3 className="text-2xl sm:text-3xl md:text-3xl font-bold text-gray-900 mb-6">
+              <h3 className="text-3xl sm:text-3xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-6">
                 Branding
               </h3>
 
-              <div className="mb-6 sm:mb-8 text-sm sm:text-base">
+              <div className="mb-6 sm:mb-8 text-base sm:text-base">
                 <span className="text-gray-600">Currently </span>
                 <span className="font-bold text-gray-900">TRENDING </span>
                 <span className="text-gray-600">Services</span>
               </div>
 
-              <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+              <ul className="space-y-4 sm:space-y-4 mb-8 sm:mb-8">
                 {[
                   "Professional SEO/GMB",
                   "Brand Promotion",
@@ -83,34 +83,34 @@ const DigitalMarketingUI: React.FC = () => {
                 ].map((service, idx) => (
                   <li
                     key={idx}
-                    className="flex items-center space-x-2 sm:space-x-3"
+                    className="flex items-center space-x-3 sm:space-x-3"
                   >
-                    <div className="w-4 h-4 sm:w-5 sm:h-5 bg-green-500 rounded-full flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full"></div>
+                    <div className="w-5 h-5 sm:w-5 sm:h-5 bg-green-500 rounded-full flex items-center justify-center">
+                      <div className="w-2 h-2 sm:w-2 sm:h-2 bg-white rounded-full"></div>
                     </div>
-                    <span className="text-gray-700 text-xs sm:text-sm font-medium">
+                    <span className="text-gray-700 text-sm sm:text-sm font-medium">
                       {service}
                     </span>
                   </li>
                 ))}
               </ul>
 
-              <div className="bg-yellow-100 rounded-lg p-2 sm:p-3 text-center">
-                <span className="text-yellow-800 text-xs sm:text-sm">
+              <div className="bg-yellow-100 rounded-lg p-3 sm:p-3 text-center">
+                <span className="text-yellow-800 text-sm sm:text-sm font-medium">
                   Plan billed monthly/packages wise
                 </span>
               </div>
             </div>
 
             {/* Black Box */}
-            <div className="bg-black p-6 sm:p-10 flex-1 flex flex-col justify-center">
-              <p className="text-red-500 font-bold text-xs sm:text-sm uppercase tracking-wider mb-4 sm:mb-6">
+            <div className="bg-black p-8 sm:p-10 flex-1 flex flex-col justify-center">
+              <p className="text-red-500 font-extrabold text-lg sm:text-base md:text-lg uppercase tracking-widest mb-6 sm:mb-6 drop-shadow-lg">
                 SALES & REVENUE SERVICES
               </p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-6 sm:mb-8">
+              <h2 className="text-3xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-6 sm:mb-8">
                 Expert Working On Drop-Shipping & Paid AD Campaign
               </h2>
-              <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-10">
+              <p className="text-gray-300 text-base sm:text-base md:text-lg leading-relaxed mb-8 sm:mb-10">
                 Allowing entrepreneurs to focus on marketing and sales. Paired
                 with a paid ad campaign, it can significantly increase
                 visibility and drive targeted traffic to your store, boosting
@@ -118,7 +118,7 @@ const DigitalMarketingUI: React.FC = () => {
               </p>
 
               <Link href="/contact">
-                <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-lg transition-colors duration-300 uppercase text-xs sm:text-sm tracking-wide">
+                <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-4 sm:py-4 px-6 sm:px-8 rounded-lg transition-colors duration-300 uppercase text-sm sm:text-sm tracking-wide">
                   MONTHLY BUSINESS BOOSTER PACKAGES
                 </button>
               </Link>

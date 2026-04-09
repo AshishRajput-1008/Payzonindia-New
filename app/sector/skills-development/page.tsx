@@ -97,7 +97,7 @@ const SkillsDevelopmentPage: React.FC = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-black/80"></div>
 
-        <div className="relative z-10 text-center px-4">
+          <div className="relative z-10 text-center px-4 mt-[190px]">
           <motion.h1 
             className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg"
             initial={{ y: -50, opacity: 0 }}

@@ -75,7 +75,7 @@ const ServiceSection: React.FC = () => {
           {services.map((service) => (
             <div
               key={service.id}
-              className="group relative text-center p-8 "
+              className="group relative text-center p-8 py-12 sm:py-8"
             >
               {/* Background Image */}
               <div
@@ -87,24 +87,24 @@ const ServiceSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-blue-600 to-blue-700 opacity-0 scale-75 group-hover:opacity-90 group-hover:scale-100 transition-all duration-700 flex items-center justify-center" />
 
               {/* Icon */}
-              <div className="relative z-10 flex justify-center -mt-17">
+              <div className="relative z-10 flex justify-center mb-6">
                 <div className="w-16 h-16 flex items-center justify-center rounded-full border-4 border-blue-500 bg-white text-blue-700 transition-all duration-500">
                   {service.icon}
                 </div>
               </div>
 
               {/* Default Content */}
-              <div className="relative z-10 mt-6 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-6">
-                <h4 className="text-lg font-bold text-gray-900 text-center mx-auto whitespace-nowrap">
+              <div className="relative z-10 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-6">
+                <h4 className="text-lg font-bold text-gray-900 text-center mx-auto whitespace-nowrap mb-4">
                   {firstNWords(service.title, 6)}
                 </h4>
-                <p className="mt-3 text-gray-600 line-clamp-4">
+                <p className="mt-3 mb-6 text-gray-600 line-clamp-4">
                   {service.description}
                 </p>
 
                 <a
                   href={service.link}
-                  className="mt-6 inline-block bg-blue-500 text-white px-6 py-2 font-semibold transition-all duration-500 group-hover:bg-white group-hover:text-blue-600"
+                  className="inline-block bg-blue-500 text-white px-6 py-2 font-semibold transition-all duration-500 group-hover:bg-white group-hover:text-blue-600"
                 >
                   Read more
                 </a>

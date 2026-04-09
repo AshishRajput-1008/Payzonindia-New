@@ -150,28 +150,28 @@ const companies: Company[] = [
         icon: <Globe className="w-8 h-8" />,
         urlname: "smarttaxidea.com"
     },
-    {
-        id: 8,
-        name: "Ineffable Spark",
-        logo: "/images/inffablesparklogo (1).png",
-        website: "https://ineffablespark.com/",
-        description: "Ineffable Spark trains professionals for India’s banking sector. Offers NISM and IRDA certification-focused coaching. Bridges the experience gap for aspiring bankers.",
-        benefits: [
-            "Prepares candidates for banking careers",
-            "Builds industry-relevant expertise",
-            "Enhances professional confidence"
-        ],
-        features: [
-            "NISM and IRDA certification coaching",
-            "Real-world case studies",
-            "Tailored guidance for banking roles",
-            "20+ years of industry expertise"
-        ],
-        category: "Banking Education",
-        gradient: "from-blue-600 to-blue-800",
-        icon: <TrendingUp className="w-8 h-8" />,
-        urlname: "ineffablespark.com"
-    },
+    // {
+    //     id: 8,
+    //     name: "Ineffable Spark",
+    //     logo: "/images/inffablesparklogo (1).png",
+    //     website: "https://ineffablespark.com/",
+    //     description: "Ineffable Spark trains professionals for India’s banking sector. Offers NISM and IRDA certification-focused coaching. Bridges the experience gap for aspiring bankers.",
+    //     benefits: [
+    //         "Prepares candidates for banking careers",
+    //         "Builds industry-relevant expertise",
+    //         "Enhances professional confidence"
+    //     ],
+    //     features: [
+    //         "NISM and IRDA certification coaching",
+    //         "Real-world case studies",
+    //         "Tailored guidance for banking roles",
+    //         "20+ years of industry expertise"
+    //     ],
+    //     category: "Banking Education",
+    //     gradient: "from-blue-600 to-blue-800",
+    //     icon: <TrendingUp className="w-8 h-8" />,
+    //     urlname: "ineffablespark.com"
+    // },
     {
         id: 9,
         name: "Cascab",

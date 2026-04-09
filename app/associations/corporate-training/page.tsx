@@ -23,7 +23,6 @@ import {
   HeartHandshake,
   MessageCircle
 } from "lucide-react";
-import Link from "next/link";
 
 const CorporateTrainingPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -194,34 +193,6 @@ const CorporateTrainingPage = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Contact Card */}
-  <Link href="/contact">
-              <div className="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-green-600 to-green-800">
-                <div className="relative px-6 py-20 flex flex-col items-center justify-center text-center">
-                  <HeartHandshake className="w-16 h-16 text-green-200 mb-4" />
-                  <h3 className="text-3xl font-bold text-white mb-3">
-                    Start Your Journey
-                  </h3>
-                  <div className="mb-4 flex flex-col items-center">
-                    <div className="flex items-center text-white mb-2">
-                      <Phone className="w-6 h-6 mr-2" />
-                      <span className="text-2xl font-semibold">
-                        +91 755 485 9540
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-white text-lg mb-6">
-                    Schedule a consultation today
-                  </p>
-                  <button className="bg-white text-green-600 px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-gray-100 transition-all duration-300 group hover:scale-105 shadow-lg">
-                    <span>Get in Touch</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </div>
-              </Link>
-
             </div>
           </aside>
 
@@ -478,19 +449,40 @@ const CorporateTrainingPage = () => {
               <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-blue-100">
                 Let's discuss how our corporate training programs can help your organization achieve its goals and build a high-performing team.
               </p>
-
-              
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-  <Link href="/contact" className="mx-auto">
-    <button
-      type="button"
-      className="bg-white text-blue-600 px-10 py-4 rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg"
-    >
-      Contact Us To Our Team
-    </button>
-  </Link>
-</div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  type="button"
+                  className="bg-white text-blue-600 px-10 py-4 rounded-full font-semibold text-lg flex items-center gap-3 hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg mx-auto"
+                >
+                  Contact Us To Our Team
+                </button>
+              </div>
             </section>
+
+            {/* Contact Card - Moved to Bottom */}
+            <div className="relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-green-600 to-green-800">
+              <div className="relative px-6 py-20 flex flex-col items-center justify-center text-center">
+                <HeartHandshake className="w-16 h-16 text-green-200 mb-4" />
+                <h3 className="text-3xl font-bold text-white mb-3">
+                  Start Your Journey
+                </h3>
+                <div className="mb-4 flex flex-col items-center">
+                  <div className="flex items-center text-white mb-2">
+                    <Phone className="w-6 h-6 mr-2" />
+                    <span className="text-2xl font-semibold">
+                      +91 755 485 9540
+                    </span>
+                  </div>
+                </div>
+                <p className="text-white text-lg mb-6">
+                  Schedule a consultation today
+                </p>
+                <button className="bg-white text-green-600 px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-gray-100 transition-all duration-300 group hover:scale-105 shadow-lg">
+                  <span>Get in Touch</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
           </main>
         </div>
       </div>

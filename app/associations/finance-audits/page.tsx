@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
-import { Phone, CheckCircle, ArrowRight, FileText, Calculator, Building, Scale, Calendar, Shield, Users } from "lucide-react";
+import React, { useEffect } from "react";
+import { Phone, CheckCircle, ArrowRight, FileText, Calculator, Building, Scale, Calendar, Shield, Users, Facebook, Twitter, Linkedin, Instagram, Mail, Globe } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useNavbarColor, sectorGradients } from "@/app/contexts/NavbarColorContext"
 
 const PyazonLandingPage: React.FC = () => {
   const services = [
@@ -20,30 +21,60 @@ const PyazonLandingPage: React.FC = () => {
     "Financial Audit Services",
   ];
 
+      const { setNavbarGradient, setPaymentGradient, setLogoGradient } = useNavbarColor();
+  
+      useEffect(() => {
+          // Get gradients for this sector
+          const gradients = sectorGradients['Finance-Audits'];
+          
+          // Set all three gradients
+          setNavbarGradient(gradients.navbar);
+          setPaymentGradient(gradients.payment);
+          setLogoGradient(gradients.logo);
+          
+          // Cleanup: Reset to default
+          return () => {
+            const defaultGradients = sectorGradients['default'];
+            setNavbarGradient(defaultGradients.navbar);
+            setPaymentGradient(defaultGradients.payment);
+            setLogoGradient(defaultGradients.logo);
+          };
+        }, [setNavbarGradient, setPaymentGradient, setLogoGradient]);
+
   return (
     <div className="min-h-screen">
       {/* Main Content */}
-      <div className="relative w-full min-h-screen flex items-center justify-center">
+           <div className="relative w-full min-h-screen flex items-center justify-center pt-36 md:pt-56 lg:pt-64">
         <img
-          src="/images/bg-pagetitle.jpg"
-          alt=""
+          src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&h=600&fit=crop"
+          alt="Background"
           className="w-full h-full object-cover absolute inset-0"
         />
         <div className="absolute inset-0 bg-black/70"></div>
 
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
-            Welcome to <span className="text-blue-500">Smart Tax Idea</span>
+       <div className="relative z-10 text-center px-4 mb-[59px]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-2xl leading-tight md:leading-snug tracking-wide mb-3 md:mb-4">
+            Welcome to
           </h1>
-          <p className="mt-4 text-lg md:text-2xl text-gray-200">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white drop-shadow-2xl leading-tight md:leading-tight mb-4 md:mb-6 px-2">
+          Smart Tax Idea
+          </h2>
+          <p className="mt-4 md:mt-6 text-lg md:text-xl lg:text-2xl text-white font-medium leading-relaxed max-w-3xl mx-auto drop-shadow-lg px-2">
             Expert C.A Services in India — Your Trusted Partner for All Financial & Tax Needs
           </p>
         </div>
       </div>
 
+
       <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Sidebar - Takes 4 columns */}
+
+
+
+
+
+
           <motion.aside
             className="lg:col-span-4"
             initial={{ opacity: 0, x: -50 }}
@@ -51,8 +82,71 @@ const PyazonLandingPage: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="sticky top-48 space-y-8">
+
+  {/* Social Links Card - Hidden on mobile */}
+              <motion.div
+                className="hidden lg:block bg-white/30 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-blue-900/50"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                  Connect With Us
+                </h3>
+                <div className="flex justify-center gap-3">
+                  <motion.a
+                    href="https://www.facebook.com/smarttaxidea/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-br from-blue-600 to-blue-700 p-3 rounded-full text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Facebook className="w-5 h-5" />
+                  </motion.a>
+                  <motion.a
+                    href="https://x.com/PayzonIndia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-br from-blue-400 to-blue-500 p-3 rounded-full text-white hover:from-blue-500 hover:to-blue-600 transition-all duration-300 shadow-md"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Twitter className="w-5 h-5" />
+                  </motion.a>
+                  <motion.a
+                    href="https://www.linkedin.com/company/101633112/admin/page-posts/published/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-br from-blue-700 to-blue-800 p-3 rounded-full text-white hover:from-blue-800 hover:to-blue-900 transition-all duration-300 shadow-md"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </motion.a>
+                  <motion.a
+                    href="https://www.instagram.com/smarttaxidea"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-br from-pink-500 to-purple-600 p-3 rounded-full text-white hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-md"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Instagram className="w-5 h-5" />
+                  </motion.a>
+                  <motion.a
+                    href="info@payzonindia.com"
+                    className="bg-gradient-to-br from-indigo-600 to-indigo-700 p-3 rounded-full text-white hover:from-indigo-700 hover:to-indigo-800 transition-all duration-300 shadow-md"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Mail className="w-5 h-5" />
+                  </motion.a>
+                </div>
+              </motion.div>
+
               {/* Services Menu */}
-              <div className="bg-white/30 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-blue-700/50">
+              <div className="bg-white/30 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-blue-900/50">
                 <h2 className="text-2xl font-bold text-black mb-6 text-center">
                   Our Services
                 </h2>
@@ -60,7 +154,7 @@ const PyazonLandingPage: React.FC = () => {
                   {services.map((service, index) => (
                     <motion.div
                       key={index}
-                      className="bg-blue-700 hover:bg-blue-600 px-5 py-3 text-white rounded-full font-medium text-center cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                      className="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 hover:from-blue-800 hover:via-indigo-800 hover:to-blue-900 px-5 py-3 text-white rounded-full font-medium text-center cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -70,9 +164,39 @@ const PyazonLandingPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Contact Card */}
+
+                 {/* Website Link Card */}
               <motion.div
-                className="relative overflow-hidden rounded-2xl"
+                className="hidden bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 rounded-2xl p-6 shadow-xl border border-blue-700/50"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <div className="text-center">
+                  <Globe className="w-12 h-12 text-blue-200 mx-auto mb-3" />
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    Visit Our Website
+                  </h3>
+                  <p className="text-blue-100 text-sm mb-4">
+                    Explore our full range of services and get started online
+                  </p>
+                  <motion.a
+                    href="https://www.smarttaxidea.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span>Go to Website</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </motion.a>
+                </div>
+              </motion.div>
+
+              {/* Contact Card - Hidden on mobile */}
+              <motion.div
+                className="hidden lg:block relative overflow-hidden rounded-2xl"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -110,7 +234,7 @@ const PyazonLandingPage: React.FC = () => {
                     Get expert CA consultation today:
                   </p>
                   <motion.button
-                    className="bg-blue-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-blue-400 transition-all duration-300 group"
+                    className="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 hover:from-blue-800 hover:via-indigo-800 hover:to-blue-900 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 transition-all duration-300 group shadow-lg"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -119,6 +243,8 @@ const PyazonLandingPage: React.FC = () => {
                   </motion.button>
                 </div>
               </motion.div>
+
+
             </div>
           </motion.aside>
 
@@ -139,7 +265,7 @@ const PyazonLandingPage: React.FC = () => {
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 bg-blue-900/30"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-blue-800/30 to-indigo-900/40"></div>
               </div>
               <div className="p-8">
                 <motion.h1
@@ -189,12 +315,12 @@ const PyazonLandingPage: React.FC = () => {
                   className="w-full rounded-lg object-cover mb-6"
                 />
                 <motion.div
-                  className="bg-blue-50 p-6 rounded-lg"
+                  className="bg-gradient-to-r from-blue-50 via-indigo-50 to-blue-50 p-6 rounded-lg border-l-4 border-blue-900"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
-                  <Users className="w-6 h-6 text-blue-500 inline mr-2" />
+                  <Users className="w-6 h-6 text-blue-900 inline mr-2" />
                   <span className="font-semibold text-blue-900">Key Stat:</span> Trusted by 10,000+ clients with a 99.7% satisfaction rate.
                 </motion.div>
               </section>
@@ -465,7 +591,6 @@ const PyazonLandingPage: React.FC = () => {
                 >
                   We are proud to be one of the leading providers of expert C.A. services in India, trusted by thousands of businesses and individuals for professional, reliable, and prompt services. Our clients appreciate our commitment to excellence, as reflected in our high satisfaction rates.
                 </motion.p>
-                {/* Note: Specific testimonials not detailed on the site, so general statement used */}
               </section>
 
               {/* Conclusion and Call to Action */}
@@ -487,13 +612,115 @@ const PyazonLandingPage: React.FC = () => {
                   Take your business to the next level with Smart Tax Idea – your trusted partner for online CA services across India. Whether you're a startup, a growing company, or an individual looking for expert tax and accounting support, we make it simple, reliable, and affordable. Contact us today to get started on your path to financial success.
                 </motion.p>
                 <motion.button
-                  className="bg-blue-500 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 hover:bg-blue-600 transition-all duration-300 mx-auto"
+                  className="bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 hover:from-blue-800 hover:via-indigo-800 hover:to-blue-900 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 transition-all duration-300 mx-auto"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                
                 >
-                  Get Started <ArrowRight className="w-5 h-5" />
+                      <motion.a href="https://www.smarttaxidea.com"
+                    target="_blank"
+                    rel="noopener noreferrer">    Get Started </motion.a>
+                     
+                      <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </section>
+
+               {/* Bottom Social Links & Website Section */}
+                            <motion.section
+                              className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 rounded-2xl p-8 shadow-2xl mt-8"
+                              initial={{ opacity: 0, y: 50 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.8, delay: 3.2 }}
+                            >
+                              <div className="text-center mb-6">
+                                <h3 className="text-2xl font-bold text-white mb-2">
+                                  Stay Connected
+                                </h3>
+                                <p className="text-blue-100">
+                                  Follow us on social media and visit our website for updates
+                                </p>
+                              </div>
+              
+                              {/* Social Links */}
+                              <div className="flex justify-center gap-4 mb-6 flex-wrap">
+                                <motion.a
+                                  href="https://www.facebook.com/smarttaxidea/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="bg-white/10 backdrop-blur-sm p-4 rounded-full text-white hover:bg-white/20 transition-all duration-300 shadow-lg border border-white/20"
+                                  whileHover={{ scale: 1.1, rotate: 5 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Facebook className="w-6 h-6" />
+                                </motion.a>
+                                <motion.a
+                                  href="https://x.com/PayzonIndia"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="bg-white/10 backdrop-blur-sm p-4 rounded-full text-white hover:bg-white/20 transition-all duration-300 shadow-lg border border-white/20"
+                                  whileHover={{ scale: 1.1, rotate: 5 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Twitter className="w-6 h-6" />
+                                </motion.a>
+                                <motion.a
+                                  href="https://www.linkedin.com/company/101633112/admin/page-posts/published/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="bg-white/10 backdrop-blur-sm p-4 rounded-full text-white hover:bg-white/20 transition-all duration-300 shadow-lg border border-white/20"
+                                  whileHover={{ scale: 1.1, rotate: 5 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Linkedin className="w-6 h-6" />
+                                </motion.a>
+                                <motion.a
+                                  href="https://www.instagram.com/smarttaxidea"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="bg-white/10 backdrop-blur-sm p-4 rounded-full text-white hover:bg-white/20 transition-all duration-300 shadow-lg border border-white/20"
+                                  whileHover={{ scale: 1.1, rotate: 5 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Instagram className="w-6 h-6" />
+                                </motion.a>
+                                <motion.a
+                                  href="info@payzonindia.com"
+                                  className="bg-white/10 backdrop-blur-sm p-4 rounded-full text-white hover:bg-white/20 transition-all duration-300 shadow-lg border border-white/20"
+                                  whileHover={{ scale: 1.1, rotate: 5 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Mail className="w-6 h-6" />
+                                </motion.a>
+                              </div>
+              
+                              {/* Website Link */}
+                              <div className="flex justify-center">
+                                <motion.a
+                                  href="https://www.smarttaxidea.com"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-3 bg-white text-blue-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 shadow-xl group"
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Globe className="w-6 h-6" />
+                                  <span>Visit Our Website</span>
+                                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                                </motion.a>
+                              </div>
+              
+                              {/* Contact Info */}
+                              <div className="mt-6 pt-6 border-t border-white/20 text-center">
+                                <div className="flex items-center justify-center gap-2 text-white mb-2">
+                                  <Phone className="w-5 h-5" />
+                                  <span className="text-lg font-semibold">+91 755 485 9540</span>
+                                </div>
+                                <div className="flex items-center justify-center gap-2 text-blue-100">
+                                  <Mail className="w-5 h-5" />
+                                  <span>contact@smarttaxidea.com</span>
+                                </div>
+                              </div>
+                            </motion.section>
             </article>
           </motion.main>
         </div>
