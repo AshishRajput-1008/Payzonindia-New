@@ -53,8 +53,7 @@ export default function Home() {
       <HowItWorks/>
        <SmartTaxIdeaSection/>
       {/* <Team /> */}
-      {/* <MarketingSection /> */}
-      {/* <BusinessShowcase /> */}
+      {/* <MarketingSection /> */}      {/* <BusinessShowcase /> */}
       {/* <NewComponent /> */}
        <MarqueeDemo />
       <Testimonials />

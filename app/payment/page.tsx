@@ -10,7 +10,9 @@ export default function PaymentPage() {
   const [clicked, setClicked] = useState(false);
   const { setNavbarGradient, setPaymentGradient, setLogoGradient } = useNavbarColor();
 
-  const PAYMENT_URL = 'https://u.payu.in/qr6pqKNxVhzC';
+
+    const PAYMENT_URL = 'https://rzp.io/rzp/HxCD3kT';
+
 
   const services = [
     {
