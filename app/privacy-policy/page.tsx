@@ -11,10 +11,10 @@ export default function PrivacyPolicyPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-3">
             <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition">
-              <img src="/images/logo.png" alt="Payzon India" className="w-12 h-12" />
+              <img src="/images/logo.png" alt="PAYZONINDIA" className="w-12 h-12" />
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Payzon India
+                  PAYZONINDIA
                 </h1>
               </div>
             </Link>
@@ -41,7 +41,7 @@ export default function PrivacyPolicyPage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Your privacy is important to us. This policy outlines how Payzon India collects, uses, and protects your personal information.
+            Your privacy is important to us. This policy outlines how PAYZONINDIA collects, uses, and protects your personal information.
           </p>
           <p className="text-sm text-gray-500 mt-4">Last Updated: December 2025</p>
         </div>

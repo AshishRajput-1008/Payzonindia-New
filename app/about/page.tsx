@@ -46,7 +46,7 @@ const PayzonAboutUsPage: React.FC = () => {
       year: "2009",
       title: "Foundation Established",
       description:
-        "Payzon India Pvt Ltd founded in Bhopal, Madhya Pradesh, as a dynamic software company focused on innovative digital solutions. Starting with a vision to empower businesses globally, we began our journey in IT services and digital innovation.",
+        "PAYZONINDIA PRIVATE LIMITED founded in Bhopal, Madhya Pradesh, as a dynamic software company focused on innovative digital solutions. Starting with a vision to empower businesses globally, we began our journey in IT services and digital innovation.",
       icon: <Building2 className="w-6 h-6 sm:w-8 sm:h-8" />,
     },
     {
@@ -214,7 +214,7 @@ const PayzonAboutUsPage: React.FC = () => {
               </span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent px-2">
-              About Payzon India
+              About PAYZONINDIA
             </h1>
             <p className="text-sm sm:text-base md:text-lg lg:text-2xl max-w-4xl mx-auto mb-6 sm:mb-8 text-gray-200 leading-relaxed px-4">
               An emerging corporate powerhouse from Central India, driving
@@ -251,7 +251,7 @@ const PayzonAboutUsPage: React.FC = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-20"></div>
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop"
-                alt="Payzon India Team"
+                alt="PAYZONINDIA Team"
                 className="relative rounded-2xl sm:rounded-3xl shadow-2xl w-full"
               />
             </motion.div>
@@ -269,7 +269,7 @@ const PayzonAboutUsPage: React.FC = () => {
                 Empowering Businesses Through Innovation
               </h2>
               <p className="text-sm sm:text-base lg:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed">
-                <strong>Payzon India Pvt Ltd</strong> is a dynamic software
+                <strong>PAYZONINDIA PRIVATE LIMITED</strong> is a dynamic software
                 company headquartered in{" "}
                 <strong>
                   B1, Patel Nagar, Raisen Road, Bhopal, Madhya Pradesh, Pin:

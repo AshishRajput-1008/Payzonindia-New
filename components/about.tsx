@@ -131,7 +131,7 @@ export default function About() {
               </h2>
 
               <p className="text-base sm:text-base md:text-lg text-gray-700 leading-relaxed">
-                Payzon India, a dynamic group from Central India, excels in IT
+                PAYZONINDIA, a dynamic group from Central India, excels in IT
                 services, fintech APIs, e-commerce platforms, digital marketing,
                 cyber security, and social welfare. Since 2009, we've empowered
                 businesses and communities globally with secure, scalable, and
@@ -197,7 +197,7 @@ export default function About() {
                   <div className="bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white pl-5 sm:pl-4 md:pl-6 pr-10 sm:pr-10 md:pr-12 py-3 sm:py-3 md:py-4 lg:py-5  hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 flex items-center space-x-2 sm:space-x-2 relative ">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                     <span className="font-semibold text-sm sm:text-sm md:text-base tracking-wide relative z-10">
-                      Explore Payzon India Group
+                      Explore PAYZONINDIA Group
                     </span>
                     <div className="absolute -right-2 sm:-right-2 md:-right-3 lg:-right-5 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-17 lg:w-17 bg-white rounded-full flex items-center justify-center ">
                       <div className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 rounded-full flex items-center justify-center">
@@ -237,7 +237,7 @@ export default function About() {
               <div className="relative z-10">
                 <img
                   src="/images/1111.png"
-                  alt="Payzon India Team"
+                  alt="PAYZONINDIA Team"
                   className="w-72 xs:w-48 sm:w-72 md:w-80 lg:w-96 xl:w-[450px] 2xl:w-[500px] h-auto object-cover -mt-6 xs:-mt-6 sm:-mt-8 md:-mt-10 lg:-mt-12 "
                 />
               </div>

@@ -173,7 +173,7 @@ export default function TermsAndConditionsPage() {
                 <div>
                   <h3 className="font-semibold text-amber-900 mb-2">Important Notice</h3>
                   <p className="text-sm text-amber-800 leading-relaxed">
-                    By accessing and using Payzon India's platform, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree, please discontinue use immediately.
+                    By accessing and using PAYZONINDIA's platform, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you do not agree, please discontinue use immediately.
                   </p>
                 </div>
               </div>
@@ -187,7 +187,7 @@ export default function TermsAndConditionsPage() {
               </h2>
               <div className="space-y-5 text-gray-700 leading-relaxed">
                 <p className="text-lg">
-                  These Terms and Conditions constitute a legally binding agreement between you (whether personally or on behalf of an entity) and <strong className="text-gray-900">Payzon India</strong> ("Company", "we", "us", or "our"), concerning your access to and use of our website, mobile application, and any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the "Platform").
+                  These Terms and Conditions constitute a legally binding agreement between you (whether personally or on behalf of an entity) and <strong className="text-gray-900">PAYZONINDIA</strong> ("Company", "we", "us", or "our"), concerning your access to and use of our website, mobile application, and any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, the "Platform").
                 </p>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
@@ -283,7 +283,7 @@ export default function TermsAndConditionsPage() {
 
                 <h4 className="font-semibold text-gray-900 text-xl mt-6 mb-3">Ownership of Client Work Products</h4>
                 <p>
-                  Upon full payment for services rendered, ownership of deliverables as specified in the service agreement shall transfer to the client. However, Payzon India retains the right to:
+                  Upon full payment for services rendered, ownership of deliverables as specified in the service agreement shall transfer to the client. However, PAYZONINDIA retains the right to:
                 </p>
                 <ul className="space-y-2 ml-6">
                   <li className="flex items-start">
@@ -302,7 +302,7 @@ export default function TermsAndConditionsPage() {
 
                 <div className="bg-gray-50 border-l-4 border-gray-400 rounded-r-xl p-6">
                   <p className="text-gray-900 font-medium">
-                    ⚠️ Any pre-existing intellectual property, tools, frameworks, or methodologies used by Payzon India in the course of providing services shall remain the exclusive property of Payzon India.
+                    ⚠️ Any pre-existing intellectual property, tools, frameworks, or methodologies used by PAYZONINDIA in the course of providing services shall remain the exclusive property of PAYZONINDIA.
                   </p>
                 </div>
               </div>
@@ -971,7 +971,7 @@ export default function TermsAndConditionsPage() {
                     Governing Law
                   </h4>
                   <p className="text-sky-900">
-                    These Terms shall be governed by and defined following the laws of <strong>India</strong>. Payzon India and yourself irrevocably consent that the courts of <strong>Bhopal, Madhya Pradesh</strong> shall have exclusive jurisdiction to resolve any dispute arising from these Terms.
+                    These Terms shall be governed by and defined following the laws of <strong>India</strong>. PAYZONINDIA and yourself irrevocably consent that the courts of <strong>Bhopal, Madhya Pradesh</strong> shall have exclusive jurisdiction to resolve any dispute arising from these Terms.
                   </p>
                 </div>
 
@@ -1060,7 +1060,7 @@ export default function TermsAndConditionsPage() {
                       </div>
                       <div>
                         <p className="text-sm text-blue-200 mb-1">Address</p>
-                        <p className="font-semibold">Payzon India<br />Bhopal, Madhya Pradesh, India</p>
+                        <p className="font-semibold">PAYZONINDIA<br />Bhopal, Madhya Pradesh, India</p>
                       </div>
                     </div>
                   </div>
@@ -1084,7 +1084,7 @@ export default function TermsAndConditionsPage() {
                 <div>
                   <h3 className="text-xl font-bold text-green-900 mb-3">Acknowledgment of Terms</h3>
                   <p className="text-green-800 mb-3">
-                    By using our Platform, you acknowledge that you have read these Terms and Conditions and agree to be bound by them. These Terms constitute the entire agreement between you and Payzon India regarding your use of the Platform.
+                    By using our Platform, you acknowledge that you have read these Terms and Conditions and agree to be bound by them. These Terms constitute the entire agreement between you and PAYZONINDIA regarding your use of the Platform.
                   </p>
                   <p className="text-green-800 font-medium">
                     Thank you for taking the time to read our Terms and Conditions. We're committed to providing you with excellent service while protecting both your rights and ours.
@@ -1111,7 +1111,7 @@ export default function TermsAndConditionsPage() {
       <footer className="bg-gray-900 text-white py-8 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-400">
-            © 2025 Payzon India. All rights reserved.
+            © 2025 PAYZONINDIA. All rights reserved.
           </p>
           <div className="mt-4 flex justify-center space-x-6">
             <a href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>

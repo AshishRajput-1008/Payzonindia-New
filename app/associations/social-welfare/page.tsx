@@ -257,7 +257,7 @@ const PyazonLandingPage = () => {
                   non-profit organization, stands at the forefront of digital
                   empowerment, dedicated to securing every digital life through
                   comprehensive cyber awareness, protection strategies, and
-                  community education. As an integral part of the Payzon India
+                  community education. As an integral part of the PAYZONINDIA
                   ecosystem, the foundation leverages innovative digital
                   solutions to combat evolving cyber threats, fostering a safer
                   online environment for individuals, families, and businesses
@@ -288,7 +288,7 @@ const PyazonLandingPage = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Established under the visionary umbrella of Payzon India,
+                  Established under the visionary umbrella of PAYZONINDIA,
                   Sadaiv Yuva Foundation embodies the ethos of "eternal youth"
                   in safeguarding the future through proactive cyber defense.
                   Registered as a non-profit with full tax-exempt status under
@@ -343,7 +343,7 @@ const PyazonLandingPage = () => {
                   safety education, making it a fundamental right in the digital
                   era. We envision a world where every user, regardless of age
                   or background, can thrive online without fear of exploitation.
-                  By integrating advanced technologies from Payzon India—such as
+                  By integrating advanced technologies from PAYZONINDIA—such as
                   AI-driven threat detection tools and interactive e-learning
                   platforms—we bridge the gap between awareness and action. Our
                   vision extends to policy advocacy, pushing for stronger cyber
@@ -476,7 +476,7 @@ const PyazonLandingPage = () => {
                   transition={{ duration: 0.5, delay: 1.7 }}
                 >
                   Sadaiv Yuva Foundation thrives on strategic alliances with
-                  Payzon India, cybersecurity firms, NGOs, and government
+                  PAYZONINDIA, cybersecurity firms, NGOs, and government
                   agencies, amplifying our reach through CSR-funded projects.
                   Our diverse team of ethical hackers, educators, and policy
                   experts drives innovation in safety curricula. The impact is

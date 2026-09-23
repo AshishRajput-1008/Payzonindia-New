@@ -11,34 +11,36 @@ export default function PaymentPage() {
   const { setNavbarGradient, setPaymentGradient, setLogoGradient } = useNavbarColor();
 
 
-    const PAYMENT_URL = 'https://rzp.io/rzp/HxCD3kT';
+    // const PAYMENT_URL = 'https://rzp.io/rzp/HxCD3kT';
+        const PAYMENT_URL = 'https://payu.in/pay/A03F3FA8038CE785284CB50CD60370D4';
+
 
 
   const services = [
     {
       icon: Code,
-      title: 'PayzonIndia IT Services',
+      title: 'PAYZONINDIA IT Services',
       description: 'Custom software development, cloud solutions, and IT consulting',
       link: 'https://payzonitservices.com',
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: ShoppingCart,
-      title: 'PayzonIndia E-commerce',
+      title: 'PAYZONINDIA E-commerce',
       description: 'Complete online store solutions with secure payment integration',
       link: 'https://payzonshoppy.com',
       gradient: 'from-emerald-500 to-green-500',
     },
     {
       icon: Wallet,
-      title: 'PayzonIndia Fintech Solutions',
+      title: 'PAYZONINDIA Fintech Solutions',
       description: 'Payment gateways, digital wallets, and financial platforms',
       link: 'https://payzonapi.com',
       gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: TrendingUp,
-      title: 'PayzonIndia Digital Marketing',
+      title: 'PAYZONINDIA Digital Marketing',
       description: 'SEO, social media marketing, and growth strategies',
       link: 'https://payzonmarketing.com',
       gradient: 'from-orange-500 to-red-500',
@@ -149,7 +151,7 @@ export default function PaymentPage() {
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-5">
                 Payments must be made{' '}
                 <span className="font-semibold text-amber-300">strictly from the same bank account or company account</span>{' '}
-                as registered in your agreement with PAYZON INDIA PVT LTD. As per cyber security regulations, transactions received from unregistered or third-party accounts will be{' '}
+                as registered in your agreement with PAYZONINDIA PRIVATE LIMITED. As per cyber security regulations, transactions received from unregistered or third-party accounts will be{' '}
                 <span className="font-semibold text-red-400">placed on hold or may not be accepted.</span>
               </p>
 
@@ -185,7 +187,7 @@ export default function PaymentPage() {
                   </span>
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">PAYZON INDIA PVT LTD</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">PAYZONINDIA PRIVATE LIMITED</h2>
                 <p className="text-base text-slate-400">Click below to proceed to our secure payment gateway</p>
               </div>
 

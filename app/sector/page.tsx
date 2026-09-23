@@ -164,7 +164,7 @@ const PayzonSectorsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  Exploring Payzon India’s Diverse Sectors: Pioneering
+                  Exploring PAYZONINDIA’s Diverse Sectors: Pioneering
                   Innovation and Sustainability
                 </motion.h1>
                 <motion.p
@@ -173,7 +173,7 @@ const PayzonSectorsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India stands as a beacon of innovation, seamlessly
+                  PAYZONINDIA stands as a beacon of innovation, seamlessly
                   blending technology with sustainable commerce to empower
                   businesses and communities across a spectrum of industries.
                   From cutting-edge IT services and robust cyber security
@@ -192,7 +192,7 @@ const PayzonSectorsPage: React.FC = () => {
 
             {/* Blog-like Detailed Content: Continuous Article on Payzon Sectors */}
             <article className="bg-white rounded-2xl shadow-xl p-8 space-y-8">
-              {/* About Payzon India Section */}
+              {/* About PAYZONINDIA Section */}
               <section>
                 <motion.h2
                   className="text-3xl font-bold text-gray-900 mb-4"
@@ -200,7 +200,7 @@ const PayzonSectorsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  About Payzon India: A Multi-Sector Powerhouse
+                  About PAYZONINDIA: A Multi-Sector Powerhouse
                 </motion.h2>
                 <motion.p
                   className="text-gray-700 leading-relaxed mb-6"
@@ -208,7 +208,7 @@ const PayzonSectorsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India is more than a conglomerate; it’s a dynamic
+                  PAYZONINDIA is more than a conglomerate; it’s a dynamic
                   ecosystem that integrates technology, commerce, and social
                   good to create a sustainable future. Operating across ten key
                   sectors—IT Services, Cyber Security, Skills Development,
@@ -219,12 +219,12 @@ const PayzonSectorsPage: React.FC = () => {
                   ensures that each sector benefits from a robust technological
                   backbone, enabling seamless operations, scalability, and
                   market reach. By fostering innovation and sustainability,
-                  Payzon India is redefining how industries collaborate to drive
+                  PAYZONINDIA is redefining how industries collaborate to drive
                   economic and societal progress.
                 </motion.p>
                 <Image
                   src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop"
-                  alt="Payzon India ecosystem"
+                  alt="PAYZONINDIA ecosystem"
                   width={800}
                   height={400}
                   className="w-full rounded-lg object-cover mb-6"
@@ -260,7 +260,7 @@ const PayzonSectorsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
                 >
-                  Payzon India’s diverse portfolio is strategically designed to
+                  PAYZONINDIA’s diverse portfolio is strategically designed to
                   address modern challenges while promoting economic growth and
                   sustainability. Below, we delve into each sector, highlighting
                   its mission, impact, and unique contributions to the Payzon
@@ -611,7 +611,7 @@ const PayzonSectorsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 2.7 }}
                 >
-                  Payzon India’s success lies in its integrated ecosystem, where
+                  PAYZONINDIA’s success lies in its integrated ecosystem, where
                   technology powers commerce and sustainability drives growth.
                   Our IT and Cyber Security sectors provide the infrastructure
                   for secure, scalable operations, while Skills Development
@@ -646,7 +646,7 @@ const PayzonSectorsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 2.8 }}
                 >
-                  Join Payzon India’s Journey of Innovation
+                  Join PAYZONINDIA’s Journey of Innovation
                 </motion.h2>
                 <motion.p
                   className="text-gray-700 mb-6 max-w-2xl mx-auto"
@@ -654,7 +654,7 @@ const PayzonSectorsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 2.9 }}
                 >
-                  Payzon India invites businesses, artisans, and communities to
+                  PAYZONINDIA invites businesses, artisans, and communities to
                   join our mission of creating a sustainable, tech-driven
                   future. Whether you’re a farmer, designer, or tech enthusiast,
                   our ecosystem offers opportunities to grow, innovate, and

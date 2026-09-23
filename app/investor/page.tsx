@@ -171,7 +171,7 @@ const PayzonInvestorPage = () => {
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Welcome to
             <span className="block bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 bg-clip-text text-transparent mt-2">
-              Payzon India
+              PAYZONINDIA
             </span>
           </h1>
 
@@ -210,7 +210,7 @@ const PayzonInvestorPage = () => {
           <div>
             <div className="inline-block mb-4 px-6 py-2 bg-blue-100 border border-blue-200 rounded-full">
               <span className="text-blue-700 font-semibold">
-                About Payzon India
+                About PAYZONINDIA
               </span>
             </div>
 
@@ -219,7 +219,7 @@ const PayzonInvestorPage = () => {
             </h2>
 
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Payzon India is a diversified digital and business-service company
+              PAYZONINDIA is a diversified digital and business-service company
               operating across multiple ventures, all driven by one vision —{" "}
               <span className="font-semibold text-blue-600">
                 empowering businesses with technology, security, and strategic
@@ -464,7 +464,7 @@ const PayzonInvestorPage = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Why Partner With Payzon India?
+            Why Partner With PAYZONINDIA?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Strategic advantages that set us apart in the market
@@ -816,7 +816,7 @@ const PayzonInvestorPage = () => {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Build the Future with Payzon India
+            Build the Future with PAYZONINDIA
           </h2>
 
           <p className="text-xl text-blue-100 mb-4">
@@ -826,7 +826,7 @@ const PayzonInvestorPage = () => {
           </p>
 
           <p className="text-2xl font-bold text-white mb-12">
-            Let's grow together. Let's build the future with Payzon India.
+            Let's grow together. Let's build the future with PAYZONINDIA.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

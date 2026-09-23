@@ -30,7 +30,7 @@ export default function RefundCancellationPolicyPage() {
           </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Refund & Cancellation Policy</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            We strive for your complete satisfaction. Review our comprehensive refund and cancellation policy for all services and products offered by Payzon India.
+            We strive for your complete satisfaction. Review our comprehensive refund and cancellation policy for all services and products offered by PAYZONINDIA.
           </p>
           <p className="text-sm text-gray-500 mt-4">Last Updated: December 2025</p>
         </div>
@@ -330,7 +330,7 @@ export default function RefundCancellationPolicyPage() {
             <div className="ml-11 space-y-4 text-gray-700">
               <div>
                 <p className="font-semibold text-gray-900">Force Majeure:</p>
-                <p className="mt-2">Payzon India reserves the right to cancel or reschedule services due to circumstances beyond our control, including natural disasters, government regulations, pandemics, or technical failures. In such cases, customers will be offered:</p>
+                <p className="mt-2">PAYZONINDIA reserves the right to cancel or reschedule services due to circumstances beyond our control, including natural disasters, government regulations, pandemics, or technical failures. In such cases, customers will be offered:</p>
                 <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
                   <li>Full refund of any advance payments</li>
                   <li>Rescheduling to a mutually agreed date</li>
@@ -344,7 +344,7 @@ export default function RefundCancellationPolicyPage() {
                   <li>Cancellation and refund policies may vary based on promotional offers or special agreements</li>
                   <li>All cancellations and refunds are subject to verification and approval</li>
                   <li>Multiple cancellations may result in account restrictions</li>
-                  <li>Payzon India reserves the right to modify this policy with prior notice</li>
+                  <li>PAYZONINDIA reserves the right to modify this policy with prior notice</li>
                   <li>For specific queries, please contact our customer support team</li>
                   <li>Refund timelines exclude weekends and public holidays</li>
                 </ul>

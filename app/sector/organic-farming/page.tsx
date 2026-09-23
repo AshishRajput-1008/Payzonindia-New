@@ -224,7 +224,7 @@ const OrganicFarmingPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's Organic Farming initiative promotes sustainable
+                  PAYZONINDIA's Organic Farming initiative promotes sustainable
                   agriculture practices that prioritize environmental health and
                   human wellness. Our 200-acre certified organic farms produce
                   chemical-free vegetables, fruits, and herbs using traditional

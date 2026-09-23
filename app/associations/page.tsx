@@ -230,7 +230,7 @@ const PyazonLandingPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Sadaiv Satya News, a trusted media platform under the Payzon India umbrella, delivers unbiased reporting and insightful analysis across multiple fields. We specialize in video news, political articles, business updates, and crypto trends, covering topics like environmental sustainability, international relations, and economic developments. Our mission is to empower informed decisions with real-time updates and in-depth content. As part of Payzon India, we align with their vision of providing innovative digital solutions, ensuring accessibility and reliability for our audience.
+                  Sadaiv Satya News, a trusted media platform under the PAYZONINDIA umbrella, delivers unbiased reporting and insightful analysis across multiple fields. We specialize in video news, political articles, business updates, and crypto trends, covering topics like environmental sustainability, international relations, and economic developments. Our mission is to empower informed decisions with real-time updates and in-depth content. As part of PAYZONINDIA, we align with their vision of providing innovative digital solutions, ensuring accessibility and reliability for our audience.
                 </motion.p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <motion.div
@@ -352,7 +352,7 @@ const PyazonLandingPage: React.FC = () => {
                     <li className="flex items-start">
                       <span className="text-gray-700 mr-3 mt-1 text-lg">•</span>
                       <span>
-                        Part of Payzon India, Sadaiv Satya News focuses on delivering credible news in video news, political analysis, business updates, and crypto trends.
+                        Part of PAYZONINDIA, Sadaiv Satya News focuses on delivering credible news in video news, political analysis, business updates, and crypto trends.
                       </span>
                     </li>
                     <li className="flex items-start">

@@ -226,7 +226,7 @@ const SkillsDevelopmentPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's Skills Development division is dedicated to bridging the gap 
+                  PAYZONINDIA's Skills Development division is dedicated to bridging the gap 
                   between education and employment. We offer comprehensive training programs 
                   designed to equip individuals with market-relevant skills. From technical 
                   certifications to so ft skills development, our expert trainers have successfully 

@@ -188,7 +188,7 @@ export default function AuditReportsPage() {
               </h1>
               
               <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-                Access comprehensive audit reports covering IT security, cybersecurity assessments, and compliance reviews for Payzon India Private Limited. All documents are encrypted and access-controlled.
+                Access comprehensive audit reports covering IT security, cybersecurity assessments, and compliance reviews for PAYZONINDIA Private Limited. All documents are encrypted and access-controlled.
               </p>
               
               <div className="flex flex-wrap gap-4">
@@ -502,7 +502,7 @@ export default function AuditReportsPage() {
             <div>
               <h3 className="text-xl font-bold mb-3">Data Protection & Compliance</h3>
               <p className="text-gray-300 mb-4">
-                Payzon India Private Limited maintains strict compliance with data protection regulations and industry standards. All audit reports undergo rigorous security protocols and are accessible only to authorized stakeholders.
+                PAYZONINDIA Private Limited maintains strict compliance with data protection regulations and industry standards. All audit reports undergo rigorous security protocols and are accessible only to authorized stakeholders.
               </p>
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div className="flex items-center gap-2">

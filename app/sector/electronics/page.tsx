@@ -227,7 +227,7 @@ const ElectronicsPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's Electronics division brings the latest
+                  PAYZONINDIA's Electronics division brings the latest
                   technology to your doorstep with an extensive range of
                   consumer electronics, home appliances, and smart devices. As
                   authorized dealers for leading global brands including

@@ -85,7 +85,7 @@ const TrustSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 via-indigo-600/20 to-purple-600/30 z-10"></div>
                 <img 
                   src={ceoPZI.src}
-                  alt="Chairman of Payzon India" 
+                  alt="Chairman of PAYZONINDIA" 
                   className="w-full h-[550px] object-contain object-center bg-white"
                 />
                 
@@ -96,7 +96,7 @@ const TrustSection = () => {
                     <span className="text-green-400 font-semibold text-sm">Verified Leadership</span>
                   </div>
                   <h3 className="text-white text-3xl font-bold mb-2">Visionary Leadership</h3>
-                  <p className="text-blue-200 text-sm">Steering Payzon India Towards Excellence</p>
+                  <p className="text-blue-200 text-sm">Steering PAYZONINDIA Towards Excellence</p>
                 </div>
               </div>
 
@@ -141,7 +141,7 @@ const TrustSection = () => {
               <div className="flex items-center gap-6 mb-8 flex-wrap">
                 <img 
                   src={CompanyLogo.src} 
-                  alt="Payzon India Private Limited Logo"
+                  alt="PAYZONINDIA Private Limited Logo"
                   className="h-24 md:h-32 w-auto object-contain"
                 />
                 <div className="inline-flex items-center space-x-2">
@@ -154,7 +154,7 @@ const TrustSection = () => {
               
               {/* Updated heading with forced line break on mobile */}
               <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-8 leading-[1.1]">
-                <span className="block sm:inline">Payzon India</span>
+                <span className="block sm:inline">PAYZONINDIA</span>
                 <span className="block">Private Limited</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 mt-3">
                   Trusted Company
@@ -163,7 +163,7 @@ const TrustSection = () => {
               
               <div className="space-y-5">
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  At Payzon India, trust isn't just a value—it's our foundation. As a diversified technology and services company, we excel across IT Services, Digital Marketing, E-Commerce, and Fintech Solutions. Our commitment to excellence and transparency has earned us the confidence of thousands of clients nationwide.
+                  At PAYZONINDIA, trust isn't just a value—it's our foundation. As a diversified technology and services company, we excel across IT Services, Digital Marketing, E-Commerce, and Fintech Solutions. Our commitment to excellence and transparency has earned us the confidence of thousands of clients nationwide.
                 </p>
               </div>
             </div>

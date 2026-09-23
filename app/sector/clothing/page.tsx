@@ -228,7 +228,7 @@ const ClothingPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's Clothing division is a celebration of India's
+                  PAYZONINDIA's Clothing division is a celebration of India's
                   rich textile heritage combined with contemporary fashion
                   sensibilities. We offer an extensive range of traditional
                   ethnic wear, modern western outfits, and fusion styles for all

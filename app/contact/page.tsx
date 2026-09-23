@@ -402,7 +402,7 @@ const ModernContactPage = () => {
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/10 backdrop-blur-xl rounded-full border border-orange-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-orange-400" />
-              <span className="text-sm font-medium text-orange-400">Why Payzon India</span>
+              <span className="text-sm font-medium text-orange-400">Why PAYZONINDIA</span>
             </div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               Your Trusted{" "}

@@ -222,7 +222,7 @@ const { setNavbarGradient, setPaymentGradient, setLogoGradient } = useNavbarColo
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's Artificial Jewellery division brings the glamour of fine jewelry 
+                  PAYZONINDIA's Artificial Jewellery division brings the glamour of fine jewelry 
                   to everyone with beautifully crafted fashion accessories that rival the elegance 
                   of precious metals and gems. Our extensive collection spans traditional temple 
                   jewelry, contemporary statement pieces, delicate everyday wear, and elaborate 

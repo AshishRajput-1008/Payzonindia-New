@@ -229,7 +229,7 @@ const CyberSecurityPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  In an era of escalating cyber threats, Payzon India's Cyber
+                  In an era of escalating cyber threats, PAYZONINDIA's Cyber
                   Security division provides comprehensive protection for your
                   digital assets. Our team of certified security professionals
                   and ethical hackers work tirelessly to safeguard your business

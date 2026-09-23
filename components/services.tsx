@@ -19,7 +19,7 @@ const services = [
     icon: Shield, // PR Services → Shield for protection/reputation
     title: "PR Services",
     description:
-      "At Payzon India, we craft powerful PR campaigns that build trust, manage reputation, and connect your brand with the right media networks for long-term visibility.",
+      "At PAYZONINDIA, we craft powerful PR campaigns that build trust, manage reputation, and connect your brand with the right media networks for long-term visibility.",
     image:
       "https://evolutionpr.co.za/wp-content/uploads/2020/07/pr-word-cloud-2.jpg",
   },
@@ -27,7 +27,7 @@ const services = [
     icon: Monitor, // Brand Promotion → Monitor for digital campaigns/online presence
     title: "Brand Promotion",
     description:
-      "Payzon India helps your brand grow with targeted digital promotions, creative strategies, and engaging content that amplify your presence across multiple platforms.",
+      "PAYZONINDIA helps your brand grow with targeted digital promotions, creative strategies, and engaging content that amplify your presence across multiple platforms.",
     image:
       "https://img.freepik.com/free-photo/social-media-marketing-concept-marketing-with-applications_23-2150063170.jpg?semt=ais_hybrid&w=740",
   },
@@ -35,7 +35,7 @@ const services = [
     icon: Megaphone, // Lead Generation → Megaphone for announcing/calling leads
     title: "Lead Generation",
     description:
-      "Our team at Payzon India drives qualified leads to your business using SEO, paid ads, and personalized campaigns that strengthen your sales pipeline.",
+      "Our team at PAYZONINDIA drives qualified leads to your business using SEO, paid ads, and personalized campaigns that strengthen your sales pipeline.",
     image:
       "https://stylevanity.com/wp-content/uploads/2022/07/ecommerce-lead-generation-8.jpg",
   },
@@ -43,7 +43,7 @@ const services = [
     icon: ShoppingCart, // Dropshipping → ShoppingCart for e-commerce fulfillment
     title: "Dropshipping",
     description:
-      "Payzon India simplifies your e-commerce journey with dropshipping solutions, ensuring smooth order fulfillment, supplier coordination, and growth-driven strategies.",
+      "PAYZONINDIA simplifies your e-commerce journey with dropshipping solutions, ensuring smooth order fulfillment, supplier coordination, and growth-driven strategies.",
     image:
       "https://www.hostinger.com/in/tutorials/wp-content/uploads/sites/52/2021/11/how-to-start-dropshipping-business.png",
   },
@@ -51,14 +51,14 @@ const services = [
     icon: FileText, // D-U-N-S® Registration → FileText for official/business documents
     title: "D-U-N-S® Registration",
     description:
-      "We assist businesses in securing their D-U-N-S® registration through Payzon India, boosting global credibility and unlocking new business partnerships worldwide.",
+      "We assist businesses in securing their D-U-N-S® registration through PAYZONINDIA, boosting global credibility and unlocking new business partnerships worldwide.",
     image: "/images/Gemini_Generated_Image_1dbfna1dbfna1dbf.png",
   },
   {
     icon: CheckCircle, // Meta Verification → CheckCircle for verified/authentic
     title: "Meta Verification",
     description:
-      "With Payzon India, get your social profiles Meta verified to build authenticity, increase trust, and stand out on Facebook and Instagram with a verified badge.",
+      "With PAYZONINDIA, get your social profiles Meta verified to build authenticity, increase trust, and stand out on Facebook and Instagram with a verified badge.",
     image:
       "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=500&fit=crop",
   },

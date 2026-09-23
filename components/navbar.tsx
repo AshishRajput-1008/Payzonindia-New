@@ -52,7 +52,7 @@ const ItfirmLogo: React.FC<ItfirmLogoProps> = ({
         <Link href="/" className="flex items-center gap-2 sm:gap-3 md:gap-4">
           <img
             src="/images/logo.png"
-            alt="Payzon India Logo"
+            alt="PAYZONINDIA Logo"
             className="h-14 sm:h-16 md:h-20 w-auto object-contain"
           />
           <span className="text-black text-[1.625rem] sm:text-[1.75rem] md:text-[2rem] font-bold">
@@ -76,7 +76,7 @@ const ItfirmLogo: React.FC<ItfirmLogoProps> = ({
           <div className="w-full max-w-[70%]">
             <img
               src="/images/logo3.png"
-              alt="Payzon India Logo"
+              alt="PAYZONINDIA Logo"
               className="w-full h-auto"
             />
           </div>

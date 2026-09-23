@@ -21,7 +21,7 @@ const testimonials: Testimonial[] = [
     position: "CEO",
     company: "Shabd Today",
     content:
-      "Payzon India's web development services transformed our online presence with a sleek, responsive platform that boosted customer engagement by 40%. Their expertise is unmatched.",
+      "PAYZONINDIA's web development services transformed our online presence with a sleek, responsive platform that boosted customer engagement by 40%. Their expertise is unmatched.",
     avatar: "/images/1.png",
   },
   {
@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
     position: "Marketing Director",
     company: "Cascab",
     content:
-      "The digital marketing strategies from Payzon India, including SEO and influencer campaigns, doubled our website traffic in just three months. Truly exceptional results!",
+      "The digital marketing strategies from PAYZONINDIA, including SEO and influencer campaigns, doubled our website traffic in just three months. Truly exceptional results!",
     avatar: "/images/2.png",
   },
   {
@@ -39,7 +39,7 @@ const testimonials: Testimonial[] = [
     position: "CTO",
     company: "Nainital Testie Basket",
     content:
-      "Payzon India's cybersecurity solutions protected our sensitive data with enterprise-grade encryption and proactive monitoring. Their team is a trusted partner in our security strategy.",
+      "PAYZONINDIA's cybersecurity solutions protected our sensitive data with enterprise-grade encryption and proactive monitoring. Their team is a trusted partner in our security strategy.",
     avatar: "/images/4.png",
   },
   {
@@ -48,7 +48,7 @@ const testimonials: Testimonial[] = [
     position: "COO",
     company: "S.V.N Group Of College",
     content:
-      "With Payzon India's fintech APIs, we streamlined our payment processes, making transactions faster and more secure. Their support has been instrumental in our growth.",
+      "With PAYZONINDIA's fintech APIs, we streamlined our payment processes, making transactions faster and more secure. Their support has been instrumental in our growth.",
     avatar: "/images/5.png",
   },
   {
@@ -57,7 +57,7 @@ const testimonials: Testimonial[] = [
     position: "Founder",
     company: "I Way Travels",
     content:
-      "Payzon India's innovative IT solutions helped us launch a scalable platform that supports our global user base. Their team is professional and highly responsive.",
+      "PAYZONINDIA's innovative IT solutions helped us launch a scalable platform that supports our global user base. Their team is professional and highly responsive.",
     avatar: "/images/6.png",
   },
   {
@@ -66,7 +66,7 @@ const testimonials: Testimonial[] = [
     position: "Head of Operations",
     company: "I Way Shoppy",
     content:
-      "The strategic guidance from Payzon India elevated our software infrastructure, ensuring seamless performance and reliability. A game-changer for our business.",
+      "The strategic guidance from PAYZONINDIA elevated our software infrastructure, ensuring seamless performance and reliability. A game-changer for our business.",
     avatar: "/images/9.png",
   },
   {
@@ -75,7 +75,7 @@ const testimonials: Testimonial[] = [
     position: "Managing Director",
     company: "Smart Tax Idea",
     content:
-      "Payzon India's fintech solutions simplified our tax optimization platform, enhancing user experience and operational efficiency. Their expertise is top-notch.",
+      "PAYZONINDIA's fintech solutions simplified our tax optimization platform, enhancing user experience and operational efficiency. Their expertise is top-notch.",
     avatar: "/images/SMART TAX !DEA.png",
   },
   {
@@ -84,7 +84,7 @@ const testimonials: Testimonial[] = [
     position: "HR Manager",
     company: "Dun & Bradstreet",
     content:
-      "Payzon India's HR services streamlined our payroll and benefits administration, saving us time and resources. Their support is reliable and customer-focused.",
+      "PAYZONINDIA's HR services streamlined our payroll and benefits administration, saving us time and resources. Their support is reliable and customer-focused.",
     avatar: "/images/jkk.png",
   },
 ];
@@ -249,7 +249,7 @@ const TestimonialsSection: React.FC = () => {
           </span>
         </h2>
         <p className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-          Hear from our trusted partners about their experience with Payzon India
+          Hear from our trusted partners about their experience with PAYZONINDIA
         </p>
       </div>
 

@@ -229,7 +229,7 @@ const ITServicesPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's IT Services division stands as the
+                  PAYZONINDIA's IT Services division stands as the
                   technological backbone of our ecosystem, delivering innovative
                   solutions that drive digital transformation. With a team of
                   expert developers, engineers, and architects, we create

@@ -227,7 +227,7 @@ const SpicesVegetablesPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's Spices & Vegetables division celebrates India's
+                  PAYZONINDIA's Spices & Vegetables division celebrates India's
                   agricultural richness by bringing premium quality produce and
                   authentic spices to consumers. We work directly with over
                   3,000 farmers across India's diverse growing regions, ensuring

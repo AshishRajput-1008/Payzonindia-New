@@ -227,7 +227,7 @@ const DivineIndustriesPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's Divine Industries division honors the spiritual
+                  PAYZONINDIA's Divine Industries division honors the spiritual
                   heritage of India by providing authentic religious and
                   devotional products for all faiths. Our comprehensive catalog
                   includes beautifully crafted deity idols in various sizes and

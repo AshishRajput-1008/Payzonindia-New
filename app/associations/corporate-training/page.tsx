@@ -141,7 +141,7 @@ const CorporateTrainingPage = () => {
             Corporate Training Excellence
           </h1>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent drop-shadow-xl leading-tight mb-6">
-            PAYZON INDIA
+            PAYZONINDIA
           </h2>
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-100 mb-8">
             Empowering Organizations Through Knowledge

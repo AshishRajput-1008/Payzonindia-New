@@ -81,9 +81,9 @@ export default function Footer() {
                 className="h-24 w-24 mb-6 drop-shadow-lg"
               />
               <h3 className="font-bold text-2xl mb-5 leading-tight">
-                PAYZON INDIA
+                PAYZONINDIA
                 <br />
-                PVT LTD
+                PRIVATE LIMITED
               </h3>
               <p className="text-gray-300 text-base leading-relaxed mb-8">
                 We have extensive experience providing industry-specific IT
@@ -268,7 +268,7 @@ export default function Footer() {
             {/* Copyright and Policy Links Row */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-6 w-full">
               <p className="text-gray-400 text-base text-center md:text-left">
-                © {currentYear} PAYZON INDIA PVT LTD. All Rights Reserved.
+            © {currentYear}      PAYZONINDIA PRIVATE LIMITED. All Rights Reserved.  
               </p>
 
               <div className="flex flex-wrap justify-center gap-8">

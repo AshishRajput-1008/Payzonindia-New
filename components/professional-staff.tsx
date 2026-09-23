@@ -52,9 +52,9 @@ export default function PayzonIndiaHero() {
     {
       image: "/images/it.jpg",
       category: "IT Services",
-      title: "Innovative IT Solutions by Payzon India",
+      title: "Innovative IT Solutions by PAYZONINDIA",
       description:
-        "Payzon India delivers scalable IT infrastructure, custom software, and secure cloud solutions that help businesses streamline operations, reduce costs, and drive digital growth.",
+        "PAYZONINDIA delivers scalable IT infrastructure, custom software, and secure cloud solutions that help businesses streamline operations, reduce costs, and drive digital growth.",
       bgColor: "from-black/90 via-black/20",
       accentColor: "blue",
       stats: { number: "600+", label: "Projects Delivered" },
@@ -64,7 +64,7 @@ export default function PayzonIndiaHero() {
       category: "Digital Marketing",
       title: "Digital Marketing Strategies",
       description:
-        "Boost your brand visibility with Payzon India's SEO, social media campaigns, and digital marketing solutions designed to maximize ROI and online presence.",
+        "Boost your brand visibility with PAYZONINDIA's SEO, social media campaigns, and digital marketing solutions designed to maximize ROI and online presence.",
       bgColor: "from-black/90 via-black/20",
       accentColor: "blue",
       stats: { number: "200+", label: "Campaigns Launched" },
@@ -74,7 +74,7 @@ export default function PayzonIndiaHero() {
       category: "E-Commerce",
       title: "Nationwide Dropshipping Solutions",
       description:
-        "Payzon India delivers scalable e-commerce platforms designed to boost sales, improve customer journeys, and enable hassle-free nationwide dropshipping.",
+        "PAYZONINDIA delivers scalable e-commerce platforms designed to boost sales, improve customer journeys, and enable hassle-free nationwide dropshipping.",
       bgColor: "from-black/90 via-black/20",
       accentColor: "blue",
       stats: { number: "99.8%", label: "Uptime Guaranteed" },
@@ -331,14 +331,14 @@ export default function PayzonIndiaHero() {
                 <div className="w-8 sm:w-12 h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full" />
                 <div className="flex items-center space-x-2 text-blue-600 font-bold text-sm sm:text-xl">
                   <Rocket className="w-4 h-4 sm:w-8 sm:h-8 animate-pulse" />
-                  <span>Payzon India Empowering Digital Ventures</span>
+                  <span>PAYZONINDIA Empowering Digital Ventures</span>
                 </div>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl font-black text-black leading-tight mt-4">
                 Innovative Solutions Empowering Business Growth
               </h2>
               <button className="px-4 sm:px-6 mt-8 py-2 sm:py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full font-bold text-sm sm:text-base hover:scale-105 transition-transform duration-300 ease-out">
-                Get Started with Payzon India
+                Get Started with PAYZONINDIA
               </button>
             </div>
 

@@ -226,7 +226,7 @@ const ToysIndustriesPage: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Payzon India's Toys Industries division brings joy and learning to children 
+                  PAYZONINDIA's Toys Industries division brings joy and learning to children 
                   through carefully crafted, safe, and educational toys. We manufacture and 
                   distribute a wide range of toys including traditional wooden toys, educational 
                   STEM kits, creative art supplies, and outdoor play equipment. With over 5,000 

@@ -37,10 +37,10 @@ const faqData: FAQItem[] = [
   },
   {
     id: 2,
-    question: "Where is Payzon India located?",
+    question: "Where is PAYZONINDIA located?",
     questionHindi: "पेज़ोन इंडिया कहाँ स्थित है?",
     answer:
-      "Payzon India Pvt Ltd is located at B1, Raisen Road, Manak Vihar, Patel Nagar, Bhopal, Madhya Pradesh 462022, India.",
+      "PAYZONINDIA PRIVATE LIMITED is located at B1, Raisen Road, Manak Vihar, Patel Nagar, Bhopal, Madhya Pradesh 462022, India.",
     answerHindi:
       "पेज़ोन इंडिया प्राइवेट लिमिटेड बी1, रायसेन रोड, मनक विहार, पटेल नगर, भोपाल, मध्य प्रदेश 462022, भारत में स्थित है।",
     keywords: ["location", "address", "स्थान"],
@@ -48,7 +48,7 @@ const faqData: FAQItem[] = [
   },
   {
     id: 3,
-    question: "How can I contact Payzon India?",
+    question: "How can I contact PAYZONINDIA?",
     questionHindi: "पेज़ोन इंडिया से संपर्क कैसे करें?",
     answer:
       "You can contact us at +91 755 485 9540, +91 755 492 3296, or +91 9303430351. Email: info@payzonapi.com.",
@@ -143,7 +143,7 @@ const PayzonIndiaFAQ: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 0,
-      text: "Hello! I'm Grok, your AI assistant for Payzon India. Ask me anything about our services, location, contact, or offerings. I have real-time Google Search enabled!",
+      text: "Hello! I'm Grok, your AI assistant for PAYZONINDIA. Ask me anything about our services, location, contact, or offerings. I have real-time Google Search enabled!",
       sender: "bot",
       timestamp: Date.now(),
     },
@@ -473,7 +473,7 @@ const PayzonIndiaFAQ: React.FC = () => {
         id: 0,
         text:
           language === "en-US"
-            ? "Hello! I'm Grok, your AI assistant for Payzon India. Ask me anything!"
+            ? "Hello! I'm Grok, your AI assistant for PAYZONINDIA. Ask me anything!"
             : "नमस्ते! मैं ग्रोक हूं, पेज़ोन इंडिया का एआई असिस्टेंट।",
         sender: "bot",
         timestamp: Date.now(),
@@ -522,7 +522,7 @@ const PayzonIndiaFAQ: React.FC = () => {
           className="text-center mb-8 sm:mb-12"
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-600 via-blue-700 to-purple-800 bg-clip-text text-transparent">
-            Payzon India AI Assistant
+            PAYZONINDIA AI Assistant
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground mt-3 max-w-xl mx-auto">
             {language === "en-US"
@@ -829,7 +829,7 @@ const PayzonIndiaFAQ: React.FC = () => {
 
             <motion.button
               onClick={() => {
-                const q = encodeURIComponent("Payzon India Pvt Ltd " + (input || "services"));
+                const q = encodeURIComponent("PAYZONINDIA PRIVATE LIMITED " + (input || "services"));
                 window.open(`https://www.google.com/search?q=${q}`, "_blank");
               }}
               disabled={isLoading}
